@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Branch;
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,12 +18,12 @@ class BranchFactory extends Factory
      */
     public function definition(): array
     {
-        $companies = Branch::pluck('id')->toArray();
+
+        $companies_ids = Company::pluck('id')->toArray();
         return [
-            'name' => $this->faker->streetName(),
+            'name' => $this->faker->streetName,
             'location' => $this->faker->streetAddress(),
-            // 'company_id' => $this->faker->randomElement(),
-            'company_id' => $this->faker->randomElement('companies')
+            'company_id' => $this->faker->randomElement($companies_ids)
         ];
     }
 }

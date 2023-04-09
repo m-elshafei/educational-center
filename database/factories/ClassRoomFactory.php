@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Branch;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,13 @@ class ClassRoomFactory extends Factory
      */
     public function definition(): array
     {
+
+        $branch_ids = Branch::pluck('id')->toArray();
         return [
-            //
+            'name' => fake()->sentence(1),
+            'configration' => fake()->sentence(10),
+            'capacity' => fake()->numberBetween(10, 20),
+            'branch_id' => $this->faker->randomElement($branch_ids),
         ];
     }
 }

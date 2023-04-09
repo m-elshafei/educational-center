@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->integer('hours')->default(15);
             $table->foreignId('category_id')->constrained();
-            $table->foreignId('vendor_id')->constrained();
+            $table->foreignId('vendor_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

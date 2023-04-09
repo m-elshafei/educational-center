@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,10 @@ class ManegerFactory extends Factory
      */
     public function definition(): array
     {
+        $companies_ids = Company::pluck('id')->toArray();
         return [
-            //
+            'name' => fake()->name('female'),
+            'company_id'=> $this->faker->randomElement($companies_ids)
         ];
     }
 }

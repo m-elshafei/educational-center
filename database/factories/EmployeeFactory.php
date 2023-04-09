@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
+        $users_ids = User::pluck('id')->toArray();
         return [
-            //
+            'job_title' => fake()->jobTitle(),
+            'salary' => fake()->numberBetween(5000, 30000),
+            'hire_date' => fake()->date()
         ];
     }
 }
