@@ -12,7 +12,6 @@ class ManegerController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

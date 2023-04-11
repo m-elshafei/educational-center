@@ -12,7 +12,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::paginate(10);
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -28,7 +29,9 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Company::create($request->except('_token'));
+        return redirect()->route('company.index');
     }
 
     /**

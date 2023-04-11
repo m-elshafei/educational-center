@@ -8,13 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', config('app.name', 'Laravel'))</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link href="/assets/css/fontawesome.css" rel="stylesheet">
-    <link href="/assets/fonts/fontawesome.css" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -24,7 +22,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
+                    laravel
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -35,25 +35,51 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('category') }}">Campanies</a>
+                            <a class="nav-link" href="{{ url('company') }}">Companies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('branch') }}">Branches</a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="{{ url('manager') }}">Managers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('category') }}">Categories</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('classroom') }}">Class_Rooms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('course') }}">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('course_student') }}">Course_Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('employee') }}">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('schedule') }}">Schedules</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('vendor') }}">Vendors</a>
+                        </li> --}}
+
                     </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ url('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ url('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else

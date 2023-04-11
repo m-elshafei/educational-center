@@ -12,7 +12,8 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        //
+        $class = ClassRoom::paginate(10);
+        return view('class_rooms.index', compact('class'));
     }
 
     /**

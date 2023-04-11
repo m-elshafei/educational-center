@@ -12,7 +12,8 @@ class CourseStudentController extends Controller
      */
     public function index()
     {
-        //
+        $course_student = CourseStudent::paginate(10);
+        return view('course_student.index', compact('course_student'));
     }
 
     /**

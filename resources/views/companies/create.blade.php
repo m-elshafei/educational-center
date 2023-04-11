@@ -3,7 +3,8 @@
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">Add New Company</h1>
-        <form method="POST" action="{{ route('companies.store') }}">
+        <form method="POST" action={{ route('company.store') }}>
+
             @csrf
             {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
             <div class="row border rounded m-2">
@@ -24,7 +25,7 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="tax_numebr" class="form-label">Tax Number</label>
-                        <input type="text" class="form-control" name="tax_numebr" id="tax_numebr"
+                        <input type="text" class="form-control" name="tax_number" id="tax_numebr"
                             aria-describedby="helpId" placeholder="Tax Number">
                     </div>
                 </div>

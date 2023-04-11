@@ -1,7 +1,19 @@
 <?php
 
+use App\Http\Controllers\BranchController;
+use App\Models\Branch;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ManegerController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ClassRoomController;
+use App\Http\Controllers\CourseStudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +26,21 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('categories.index');
-// });
+Route::get('/branch', function () {
+    return view('branches.index');
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/category', CategoryController::class);
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/', HomeController::class);
+// Route::resource('/category', CategoryController::class);
+// Route::resource('/classroom', ClassRoomController::class);
+Route::resource('/company', CompanyController::class);
+// Route::resource('/course', CourseController::class);
+// Route::resource('/course_student', CourseStudentController::class);
+// Route::resource('/employee', EmployeeController::class);
+// Route::resource('/maneger', ManegerController::class);
+// Route::resource('/schedule', ScheduleController::class);
+// Route::resource('/vendor', VendorController::class);
+Route::resource('/branch', BranchController::class);
