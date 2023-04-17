@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::post('/company', 'CompanyController@company');
+
+Route::post('/login', 'App\Http\Controllers\ApiController@login');
+
+Route::post('/company', function () {
+    return Company::all();
+});
+// Route::post('/login', function () {
+//     return 'login';
+// });
