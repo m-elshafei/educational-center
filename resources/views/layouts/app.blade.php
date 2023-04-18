@@ -40,7 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('branch') }}">Branches</a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('manager') }}">Managers</a>
                         </li>
                         <li class="nav-item">
@@ -63,7 +63,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('vendor') }}">Vendors</a>
-                        </li> --}}
+                        </li>
 
                     </ul>
 

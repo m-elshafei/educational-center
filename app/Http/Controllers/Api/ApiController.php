@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
@@ -15,16 +20,24 @@ class ApiController extends Controller
         //
     }
 
+
+
     public function login(Request $request)
     {
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+        if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                "success" => false,
-                "status" => 200
-            ]);
-        $user = auth()->user();
-        $token = $user->createToken('token');
-        return $token->plainTextToken;
+                'message' => 'Invalid login details'
+            ], 401);
+        }
+
+        $user = User::where('email', $request['email'])->firstOrFail();
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
     }
 
     /**

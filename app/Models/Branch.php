@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Branch extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'location', 'company_id'];
+
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+    public function class_rooms()
+    {
+        return $this->hasMany(ClassRoom::class);
     }
 }

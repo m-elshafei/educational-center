@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name', 'owner', 'tax_number'
-    ];
-    public function branch()
+    protected $fillable = ['name', 'tax_numebr', 'owner'];
+    public function branches()
     {
-        return $this->hasMany(Branch::class);
+        return $this->hasMany(Branch::class, 'company_id', 'id');
+    }
+
+    public function maneger()
+    {
+        return $this->hasOne(Maneger::class);
     }
 }

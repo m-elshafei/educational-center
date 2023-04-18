@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
+use App\Models\Company;
 use Illuminate\Http\Request;
+
 
 class BranchController extends Controller
 {
@@ -11,7 +14,10 @@ class BranchController extends Controller
      */
     public function index()
     {
-        //
+        // dd(Company::pluck('name')->toArray());
+        $companies = Company::pluck('id')->toArray();
+        $branches = Branch::paginate(10);
+        return view('branches.index', compact('branches', 'companies'));
     }
 
     /**

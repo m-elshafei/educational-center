@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Branch;
+
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -16,7 +16,7 @@ class BranchFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
 
         $companies_ids = Company::pluck('id')->toArray();
