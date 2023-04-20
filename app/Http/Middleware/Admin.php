@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Admin
@@ -15,6 +16,15 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (Auth::check()) {
+            if (Auth::user()->role == 'admin') {
+                return redirect('admin.companies.index');
+            } else {
+                return redirect('admin.companies.index')->with('message', ' access denied as you are not admin!');
+            }
+        } else {
+            return redirect('companies.index')->with('message', 'login to access the website info');
+        }
+        // return $next($request);
     }
 }

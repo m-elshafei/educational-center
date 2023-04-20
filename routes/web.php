@@ -28,16 +28,29 @@ use App\Http\Controllers\CourseStudentController;
 
 
 Auth::routes();
-Route::middleware('auth')->group(function () {
+Route::prefix('admin')->middleware('auth', 'admin')->prefix('admin')->group(function () {
     Route::resource('/', CompanyController::class);
-    Route::resource('/category', CategoryController::class);
-    Route::resource('/classroom', ClassRoomController::class);
+    Route::resource('/home', CompanyController::class);
     Route::resource('/company', CompanyController::class);
-    Route::resource('/course', CourseController::class);
-    Route::resource('/course_student', CourseStudentController::class);
-    Route::resource('/employee', EmployeeController::class);
-    Route::resource('/maneger', ManegerController::class);
-    Route::resource('/schedule', ScheduleController::class);
-    Route::resource('/vendor', VendorController::class);
-    Route::resource('/branch', BranchController::class);
+    // Route::resource('/category', CategoryController::class);
+    // Route::resource('/classroom', ClassRoomController::class);
+    // Route::resource('/course', CourseController::class);
+    // Route::resource('/course_student', CourseStudentController::class);
+    // Route::resource('/employee', EmployeeController::class);
+    // Route::resource('/maneger', ManegerController::class);
+    // Route::resource('/schedule', ScheduleController::class);
+    // Route::resource('/vendor', VendorController::class);
+    // Route::resource('/branch', BranchController::class);
 });
+Route::resource('/', CompanyController::class);
+Route::resource('/home', CompanyController::class);
+Route::resource('/company', CompanyController::class);
+// Route::resource('/category', CategoryController::class);
+// Route::resource('/classroom', ClassRoomController::class);
+// Route::resource('/course', CourseController::class);
+// Route::resource('/course_student', CourseStudentController::class);
+// Route::resource('/employee', EmployeeController::class);
+// Route::resource('/maneger', ManegerController::class);
+// Route::resource('/schedule', ScheduleController::class);
+// Route::resource('/vendor', VendorController::class);
+// Route::resource('/branch', BranchController::class);

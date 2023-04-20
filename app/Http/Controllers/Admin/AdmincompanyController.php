@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vendor;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
-class VendorController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Vendor = Vendor::paginate(10);
-        return view('Vendors.index', compact('Vendor'));
+        $companies = Company::paginate(10);
+        return view('admin.company', compact('companies'));
     }
 
     /**
@@ -21,7 +21,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -29,13 +29,15 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Company::create($request->except('_token'));
+        return redirect()->route('company.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Vendor $vendor)
+    public function show(Company $company)
     {
         //
     }
@@ -43,7 +45,7 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vendor $vendor)
+    public function edit(Company $company)
     {
         //
     }
@@ -51,7 +53,7 @@ class VendorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Vendor $vendor)
+    public function update(Request $request, Company $company)
     {
         //
     }
@@ -59,7 +61,7 @@ class VendorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vendor $vendor)
+    public function destroy(Company $company)
     {
         //
     }

@@ -17,7 +17,7 @@
                         <th scope="col">tax numebr</th>
                         <th scope="col">created at</th>
                         <th scope="col">updated at</th>
-
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,24 @@
                             <td>{{ $company->tax_number }}</td>
                             <td>{{ $company->created_at }}</td>
                             <td>{{ $company->updated_at->diffForHumans() }}</td>
+                            <td>
+                                <div class="d-flex justify-content-evenly">
+                                    <a name="" id="" class="btn btn-warning" href=" " role="button">
+                                        <i class="fa-solid fa-code-branch fa-shake"></i>
+                                    </a>
+                                    <form action='' method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                    <a name="" id="" class="btn btn-primary" href="" role="button">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
 
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr class="">
@@ -44,6 +61,4 @@
 
         {{ $companies->links('vendor.pagination.bootstrap-5') }}
     </div>
-    {{-- {{ $dt = new DateTime()->format('Y-m-d H:i:s');
-    $dt->format('Y-m-d H:i:s') }}; --}}
 @endsection

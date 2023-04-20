@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vendor;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class VendorController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Vendor = Vendor::paginate(10);
-        return view('Vendors.index', compact('Vendor'));
+        $categories = Category::paginate(10);
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -35,7 +35,7 @@ class VendorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Vendor $vendor)
+    public function show(Category $category)
     {
         //
     }
@@ -43,7 +43,7 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vendor $vendor)
+    public function edit(Category $category)
     {
         //
     }
@@ -51,7 +51,7 @@ class VendorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Vendor $vendor)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -59,7 +59,7 @@ class VendorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vendor $vendor)
+    public function destroy(Category $category)
     {
         //
     }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use carbon\carbon as Time;
+use carbon\carbon;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon as SupportCarbon;
 
 class CompanyController extends Controller
 {
@@ -12,7 +15,26 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::paginate(10);
+        // $now = new carbon('first day of mar',- ,carbo::now());
+        // $now = Carbon::now()->toArray();
+        // $now = Carbon::now()->addYear(5)->toArray();
+        // $now = Carbon::now()->addMonth(5)->toArray();
+        // $now = Carbon::now()->toDateTimeString();
+        // $now = now()->timestamp;
+        // $now = Carbon::parse($now)->format('D, d M \'y, H:i');
+        // $now = Time::now()->timestamp;
+        // date_default_timezone_set('Australia/Melbourne');
+        // $now = date("Y-m-d H:i:s", time());
+        // dd($now);
+        // $startDate = Carbon::parse("2011-10-28");
+        // $endDate = Carbon::parse("2022-11-21");
+        // $diffInDays = $startDate->diffInyears($endDate);
+        // $date = "2016-09-16 11:00:00";
+        // $datework = Carbon::createFromDate($date);
+        // $now = Carbon::now();
+        // $testdate = $datework->diffInyears($now);
+        // dd($testdate);
+        $companies = Company::paginate(8);
         return view('companies.index', compact('companies'));
     }
 
