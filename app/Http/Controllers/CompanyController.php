@@ -15,26 +15,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        // $now = new carbon('first day of mar',- ,carbo::now());
-        // $now = Carbon::now()->toArray();
-        // $now = Carbon::now()->addYear(5)->toArray();
-        // $now = Carbon::now()->addMonth(5)->toArray();
-        // $now = Carbon::now()->toDateTimeString();
-        // $now = now()->timestamp;
-        // $now = Carbon::parse($now)->format('D, d M \'y, H:i');
-        // $now = Time::now()->timestamp;
-        // date_default_timezone_set('Australia/Melbourne');
-        // $now = date("Y-m-d H:i:s", time());
-        // dd($now);
-        // $startDate = Carbon::parse("2011-10-28");
-        // $endDate = Carbon::parse("2022-11-21");
-        // $diffInDays = $startDate->diffInyears($endDate);
-        // $date = "2016-09-16 11:00:00";
-        // $datework = Carbon::createFromDate($date);
-        // $now = Carbon::now();
-        // $testdate = $datework->diffInyears($now);
-        // dd($testdate);
-        $companies = Company::paginate(8);
+
+        $companies = Company::paginate(10);
         return view('companies.index', compact('companies'));
     }
 
@@ -51,9 +33,8 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-
         Company::create($request->except('_token'));
-        return redirect()->route('company.index');
+        return redirect()->route('company.index')->with('message', 'Company Added ');
     }
 
     /**
@@ -67,24 +48,27 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-        //
+        $company = Company::find($id);
+        return view('companies.edit', compact('company'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, $id)
     {
-        //
+        $company = Company::find($id)->update($request->except('_token'));
+        return redirect()->route('company.index')->with('message', "Company Updated " . $request->name);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy($id)
     {
-        //
+        Company::destroy($id);
+        return redirect()->route('company.index')->with('message', "Company Deleted ");
     }
 }

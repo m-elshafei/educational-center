@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Company;
+use Exception;
 use Illuminate\Http\Request;
 
 
@@ -14,10 +15,10 @@ class BranchController extends Controller
      */
     public function index()
     {
-        // dd(Company::pluck('name')->toArray());
-        $companies = Company::pluck('id')->toArray();
+
+
         $branches = Branch::paginate(10);
-        return view('branches.index', compact('branches', 'companies'));
+        return view('branches.index', compact('branches'));
     }
 
     /**
@@ -25,31 +26,39 @@ class BranchController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::get();
+        return view('branches.create', compact('companies'));
     }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'company_id' => 'required'
+        ]);
+        Branch::create($request->except('_token'));
+        return redirect()->route('branch.index')->with('message', 'Branch Added');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $branches = Company::find($id)->branches()->paginate(25);
+        return view('branches.index')->with(compact('branches'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $branch = Branch::find($id);
+        return view('branches.edit', compact('branch'));
     }
 
     /**
@@ -57,7 +66,8 @@ class BranchController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $branch = Branch::find($id)->update($request->except('_token'));
+        return redirect()->route('branch.index')->with('message', 'Branch Updated');
     }
 
     /**
@@ -65,6 +75,12 @@ class BranchController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Branch::destroy($id);
+            return redirect()->route('branch.index')->with('message', 'Branch Deleted');
+        } catch (Exception $e) {
+            // return redirect()->route('branch.index')->with('message_err', 'Cannot Delete This Branch');
+            return redirect()->route('branch.index')->with('message', $e->getMessage());
+        }
     }
 }

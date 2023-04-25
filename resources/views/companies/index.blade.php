@@ -3,10 +3,19 @@
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">Companies</h1>
-        <div class="d-flex justify-content-end mb-3">
-            <div><a name="" id="" class="btn btn-primary" target="_blank" href="" role="button">Add New
-                    Company</a></div>
-        </div>
+        @if (Auth::check() && Auth::user())
+            <div class="d-flex justify-content-end mb-3">
+                <div><a name="" id="" class="btn btn-primary" target="_blank"
+                        href="{{ route('company.create') }}" role="button">Add
+                        New
+                        Company</a></div>
+            </div>
+        @endif
+        @if (session()->has('message'))
+            <div class="alert alert-success" role="alert">
+                <strong>{{ session('message') }}</strong>
+            </div>
+        @endif
         <div class="table-responsive">
             <table class="table table-light">
                 <thead>
@@ -17,7 +26,9 @@
                         <th scope="col">tax numebr</th>
                         <th scope="col">created at</th>
                         <th scope="col">updated at</th>
-
+                        @if (Auth::check() && Auth::user())
+                            <th scope="col">Actions</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +40,28 @@
                             <td>{{ $company->tax_number }}</td>
                             <td>{{ $company->created_at }}</td>
                             <td>{{ $company->updated_at->diffForHumans() }}</td>
+                            @if (Auth::check() && Auth::user())
+                                <td>
+                                    <div class="d-flex justify-content-evenly">
+                                        <a name="" id="" class="btn btn-warning"
+                                            href="{{ route('branch.show', $company->id) }}" role="button">
+                                            <i class="fa-solid fa-code-branch fa-shake"></i>
+                                        </a>
+                                        <form action="{{ route('company.destroy', $company->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                        <a name="" id="" class="btn btn-primary"
+                                            href="{{ route('company.edit', $company->id) }}" role="button">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+
+                                    </div>
+                                </td>
+                            @endif
 
                         </tr>
                     @empty
@@ -42,8 +75,7 @@
 
         </div>
 
-        {{ $companies->links('vendor.pagination.bootstrap-5') }}
+        {{ $companies->links() }}
     </div>
-    {{-- {{ $dt = new DateTime()->format('Y-m-d H:i:s');
-    $dt->format('Y-m-d H:i:s') }}; --}}
+
 @endsection

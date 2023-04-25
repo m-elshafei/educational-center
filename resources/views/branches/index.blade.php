@@ -2,11 +2,28 @@
 @section('title', 'branches')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">branches</h1>
-        <div class="d-flex justify-content-end mb-3">
-            <div><a name="" id="" class="btn btn-primary" target="_blank" href="" role="button">Add New
-                    branch</a></div>
-        </div>
+        <h1 class="text-center">branches </h1>
+        @if (Auth::user())
+            <div class="d-flex justify-content-end mb-3">
+                <div><a name="" id="" class="btn btn-primary" target="_blank" href="{{ route('branch.create') }}"
+                        role="button">Add
+                        New
+                        branch</a></div>
+            </div>
+        @endif
+        {{-- @if (session()->has('message'))
+            {{ session('message') }}
+        @endif --}}
+        @if (session()->has('message'))
+            <div class="alert alert-success" role="alert">
+                <strong>{{ session('message') }}</strong>
+            </div>
+        @elseif (session()->has('message_err'))
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ session('message_err') }}</strong>
+            </div>
+        @endif
+
         <div class="table-responsive">
             <table class="table table-light">
                 <thead>
@@ -17,7 +34,9 @@
                         <th scope="col">company</th>
                         <th scope="col">created at</th>
                         <th scope="col">updated at</th>
-                        <th scope="col">Actions</th>
+                        @if (Auth::user())
+                            <th scope="col">Actions</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -29,24 +48,25 @@
                             <td>{{ $branch->company->name }}</td>
                             <td>{{ $branch->created_at }}</td>
                             <td>{{ $branch->updated_at->diffForHumans() }}</td>
-                            <td>
-                                <div class="d-flex justify-content-evenly">
-                                    <a name="" id="" class="btn btn-warning" href=" " role="button">
-                                        <i class="fa-solid fa-code-branch fa-shake"></i>
-                                    </a>
-                                    <form action='' method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
-                                    <a name="" id="" class="btn btn-primary" href="" role="button">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
+                            @if (Auth::user())
+                                <td>
+                                    <div class="d-flex justify-content-evenly">
 
-                                </div>
-                            </td>
+                                        <form action='{{ route('branch.destroy', $branch->id) }}' method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                        <a name="" id="" class="btn btn-primary"
+                                            href="{{ route('branch.edit', $branch->id) }}" role="button">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
                     @empty
                         <tr class="">

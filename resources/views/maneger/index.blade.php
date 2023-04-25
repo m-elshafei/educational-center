@@ -1,14 +1,17 @@
 @extends('layouts.app')
-@section('title', 'Branches')
+@section('title', 'managers')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Branches of {{ $branches->first()->company->name }}</h1>
-        <div class="d-flex justify-content-end mb-3">
-            <div><a name="" id="" class="btn btn-primary" target="_blank"
-                    href="{{ route('companies.branches.create', $branches->first()->company->id) }}" role="button">Add New
-                    Branch</a></div>
-        </div>
-        @if (session()->has('message'))
+        <h1 class="text-center">managers</h1>
+        @if (Auth::user())
+            <div class="d-flex justify-content-end mb-3">
+                <div><a name="" id="" class="btn btn-primary" target="_blank"
+                        href="{{ route('manager.create') }}" role="button">Add
+                        New
+                        manager</a></div>
+            </div>
+        @endif
+        @if (session('message'))
             <div class="alert alert-success" role="alert">
                 <strong>{{ session('message') }}</strong>
             </div>
@@ -19,35 +22,42 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">name</th>
-                        <th scope="col">location</th>
+                        <th scope="col">company</th>
                         <th scope="col">created at</th>
                         <th scope="col">updated at</th>
-                        <th scope="col">Actions</th>
+                        @if (Auth::user())
+                            <th scope="col">Actions</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($branches as $key => $branch)
+                    @forelse ($managers as $key => $manager)
                         <tr class="">
-                            <td scope="row">{{ $key + $branches->firstItem() }}</td>
-                            <td>{{ $branch->name }}</td>
-                            <td>{{ $branch->location }}</td>
-                            <td>{{ $branch->created_at }}</td>
-                            <td>{{ $branch->updated_at }}</td>
-                            <td>
-                                <div class="d-flex justify-content-evenly">
-                                    <form action='{{ route('companies.delete', $branch->id) }}' method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
-                                    <a name="" id="" class="btn btn-primary"
-                                        href="{{ route('companies.edit', $branch->id) }}" role="button">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                </div>
-                            </td>
+                            <td scope="row">{{ $key + $managers->firstitem() }}</td>
+                            <td>{{ $manager->name }}</td>
+                            <td>{{ $manager->company->name }}</td>
+                            <td>{{ $manager->created_at }}</td>
+                            <td>{{ $manager->updated_at->diffForHumans() }}</td>
+                            @if (Auth::user())
+                                <td>
+                                    <div class="d-flex justify-content-evenly">
+
+                                        <form action='{{ route('manager.destroy', $manager->id) }}' method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                        <a name="" id="" class="btn btn-primary"
+                                            href="{{ route('manager.edit', $manager->id) }}" role="button">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+
+                                    </div>
+                                </td>
+                            @endif
+
                         </tr>
                     @empty
                         <tr class="">
@@ -56,9 +66,11 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $branches->links('vendor.pagination.simple-bootstrap-5') }} --}}
-            {{ $branches->links() }}
+
+
         </div>
 
+        {{ $managers->links() }}
     </div>
+
 @endsection

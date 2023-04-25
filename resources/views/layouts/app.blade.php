@@ -35,7 +35,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('company') }}">Companies</a>
+                            <a class="nav-link" href="{{ url('/') }}">Companies</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('branch') }}">Branches</a>

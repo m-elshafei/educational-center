@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('configration', 5000)->nullable();
             $table->integer('capacity')->default(15);
-            $table->foreignId('branch_id')->nullable()->constrained('branches');
+            $table->foreignId('branch_id')->nullable()->constrained('branches')->cascadeOnDelete();
             $table->timestamps();
         });
     }

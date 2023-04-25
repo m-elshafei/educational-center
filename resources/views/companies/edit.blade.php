@@ -3,7 +3,7 @@
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">Edit Company</h1>
-        <form method="POST" action="{{ route('companies.update',$company->id) }}">
+        <form method="POST" action="{{ route('company.update', $company->id) }}">
             @method('patch')
             @csrf
             {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
@@ -25,7 +25,7 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="tax_numebr" class="form-label">Tax Number</label>
-                        <input value="{{ $company->tax_numebr }}" type="text" class="form-control" name="tax_numebr"
+                        <input value="{{ $company->tax_number }}" type="text" class="form-control" name="tax_number"
                             id="tax_numebr" aria-describedby="helpId" placeholder="Tax Number">
                     </div>
                 </div>

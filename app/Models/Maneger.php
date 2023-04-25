@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Maneger extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'company_id'];
     public function company()
     {
         return $this->belongsTo(Company::class);
