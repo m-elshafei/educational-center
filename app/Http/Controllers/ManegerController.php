@@ -6,6 +6,7 @@ use App\Models\Maneger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use Illuminate\Database\Capsule\Manager;
 
 use function PHPUnit\Framework\directoryExists;
 
@@ -34,7 +35,12 @@ class ManegerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name' => 'required', 'company_id' => 'required']);
+        Maneger::create($request->except('_token'));
+
+        return redirect()->route('manager.index')->with('message', 'Manager Added');
+        // return redirect()->route('branch.index')->with('message', 'Branch Added');
+
     }
 
     /**
@@ -50,18 +56,28 @@ class ManegerController extends Controller
      */
     public function edit($id)
     {
+
+        $companies = Company::all();
         $managers = Maneger::find($id);
-        // $companies = Company::find($id->company_id);
-        dd($managers);
         return view('maneger.edit', compact('managers', 'companies'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        //
+        // dd($request->except('_token'));
+        // $request->validate([
+        //     'name' => 'require',
+        //     'company_id' => 'require'
+        // ]);
+        $manager = Manager::find($id)->update($request->except('_token'));
+        return redirect()->route('manager.index')->with('message', 'Manager Updated');
+
+
+        // $branch = Branch::find($id)->update($request->except('_token'));
+        // return redirect()->route('branch.index')->with('message', 'Branch Updated');
     }
 
     /**

@@ -42,12 +42,12 @@ Auth::routes();
 //     // Route::resource('/vendor', VendorController::class);
 //     // Route::resource('/branch', BranchController::class);
 // });
-// Route::middleware(['auth'])->group(function () {
-Route::resource('/', CompanyController::class);
-Route::resource('/company', CompanyController::class);
-Route::resource('/branch', BranchController::class);
-Route::resource('/manager', ManegerController::class);
-Route::resource('/category', CategoryController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/', CompanyController::class);
+    Route::resource('/company', CompanyController::class);
+    Route::resource('/branch', BranchController::class);
+    Route::resource('/manager', ManegerController::class);
+    Route::resource('/category', CategoryController::class);
     // Route::resource('/home', CompanyController::class);
     // Route::resource('/company', CompanyController::class);
     // Route::resource('/classroom', ClassRoomController::class);
@@ -56,4 +56,4 @@ Route::resource('/category', CategoryController::class);
     // Route::resource('/employee', EmployeeController::class);
     // Route::resource('/schedule', ScheduleController::class);
     // Route::resource('/vendor', VendorController::class);
-// });
+});

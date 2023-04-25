@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use App\Providers\SettingsServiceProvider;
 
 return [
 
