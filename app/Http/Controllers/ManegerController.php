@@ -6,8 +6,6 @@ use App\Models\Maneger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
-use Illuminate\Database\Capsule\Manager;
-
 use function PHPUnit\Framework\directoryExists;
 
 class ManegerController extends Controller
@@ -20,7 +18,6 @@ class ManegerController extends Controller
         $managers = Maneger::paginate(10);
         return view('Maneger.index', compact('managers'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -29,7 +26,6 @@ class ManegerController extends Controller
         $companies = Company::all();
         return view('maneger.create', compact('companies'));
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -42,7 +38,6 @@ class ManegerController extends Controller
         // return redirect()->route('branch.index')->with('message', 'Branch Added');
 
     }
-
     /**
      * Display the specified resource.
      */
@@ -50,13 +45,11 @@ class ManegerController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-
         $companies = Company::all();
         $managers = Maneger::find($id);
         return view('maneger.edit', compact('managers', 'companies'));
@@ -67,24 +60,20 @@ class ManegerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // dd($request->except('_token'));
-        // $request->validate([
-        //     'name' => 'require',
-        //     'company_id' => 'require'
-        // ]);
-        $manager = Manager::find($id)->update($request->except('_token'));
+        $request->validate([
+            'name' => 'require',
+            'company_id' => 'require'
+        ]);
+        $manager = Maneger::find($id)->update($request->except('_token'));
         return redirect()->route('manager.index')->with('message', 'Manager Updated');
-
-
-        // $branch = Branch::find($id)->update($request->except('_token'));
-        // return redirect()->route('branch.index')->with('message', 'Branch Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Maneger $maneger)
+    public function destroy($id)
     {
-        //
+        Maneger::destroy($id);
+        return redirect()->route('manager.index')->with('message', 'Manager Deleted');
     }
 }

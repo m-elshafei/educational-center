@@ -2,13 +2,11 @@
 @section('title', 'managers')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">managers</h1>
+        <h1 class="text-center">Managers</h1>
         @if (Auth::user())
             <div class="d-flex justify-content-end mb-3">
                 <div><a name="" id="" class="btn btn-primary" target="_blank"
-                        href="{{ route('manager.create') }}" role="button">Add
-                        New
-                        manager</a></div>
+                        href="{{ route('manager.create') }}" role="button">Add New manager</a></div>
             </div>
         @endif
         @if (session('message'))
