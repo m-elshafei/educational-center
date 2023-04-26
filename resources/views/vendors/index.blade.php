@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Branches')
+@section('title', 'vendors')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Branches of {{ $branches->first()->company->name }}</h1>
+        <h1 class="text-center">Vendors </h1>
         <div class="d-flex justify-content-end mb-3">
-            <div><a name="" id="" class="btn btn-primary" target="_blank"
-                    href="{{ route('companies.branches.create', $branches->first()->company->id) }}" role="button">Add New
-                    Branch</a></div>
+            <div><a name="" id="" class="btn btn-primary" href="{{ route('vendor.create') }}" role="button">Add
+                    New
+                    vendor</a></div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -19,31 +19,43 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">name</th>
-                        <th scope="col">location</th>
+                        <th scope="col">image</th>
+                        <th scope="col">logo</th>
                         <th scope="col">created at</th>
                         <th scope="col">updated at</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($branches as $key => $branch)
+                    @forelse ($vendors as $key => $vendor)
                         <tr class="">
-                            <td scope="row">{{ $key + $branches->firstItem() }}</td>
-                            <td>{{ $branch->name }}</td>
-                            <td>{{ $branch->location }}</td>
-                            <td>{{ $branch->created_at }}</td>
-                            <td>{{ $branch->updated_at }}</td>
+                            <td scope="row">{{ $key + $vendors->firstItem() }}</td>
+                            <td>{{ $vendor->name }}</td>
+                            @if (strstr($vendor->logo, 'http'))
+                                <td><img width="50px" src="{{ $vendor->logo }}" class="img-fluid rounded-top"
+                                        alt="">
+                                </td>
+                            @else
+                                <td><img width="50px" src="{{ 'storage/' . $vendor->logo }}" class="img-fluid rounded-top"
+                                        alt="">
+                                </td>
+                            @endif
+
+                            <td><a download href="{{ $vendor->logo }}">Open </a><br>
+                                <a download href="{{ asset('storage/' . $vendor->logo) }}"> Download</a>
+                            </td>
+                            <td>{{ $vendor->created_at }}</td>
+                            <td>{{ $vendor->updated_at }}</td>
                             <td>
                                 <div class="d-flex justify-content-evenly">
-                                    <form action='{{ route('companies.delete', $branch->id) }}' method="post">
+                                    <form action='' method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
-                                    <a name="" id="" class="btn btn-primary"
-                                        href="{{ route('companies.edit', $branch->id) }}" role="button">
+                                    <a name="" id="" class="btn btn-primary" href="" role="button">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div>
@@ -56,8 +68,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $branches->links('vendor.pagination.simple-bootstrap-5') }} --}}
-            {{ $branches->links() }}
+            {{ $vendors->links() }}
         </div>
 
     </div>

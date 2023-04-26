@@ -44,6 +44,9 @@
                             <a class="nav-link" href="{{ url('manager') }}">Managers</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('vendor') }}">Vendors</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('category') }}">Categories</a>
                         </li>
                         <li class="nav-item">
@@ -60,9 +63,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('schedule') }}">Schedules</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('vendor') }}">Vendors</a>
                         </li>
 
                     </ul>

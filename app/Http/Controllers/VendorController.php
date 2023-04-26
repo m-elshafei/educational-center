@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VendorController extends Controller
 {
@@ -12,8 +13,8 @@ class VendorController extends Controller
      */
     public function index()
     {
-        $Vendor = Vendor::paginate(10);
-        return view('Vendors.index', compact('Vendor'));
+        $vendors = Vendor::paginate(10);
+        return view('Vendors.index', compact('vendors'));
     }
 
     /**
@@ -21,7 +22,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendors.create');
     }
 
     /**
@@ -29,7 +30,20 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Vendor::create($request->except('_token'));
+        // return redirect()->route('vendor.index')->with('message', 'Vendor Added');
+        $request->validate([
+            'name' => 'required|string|max:200',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $vendor = new Vendor();
+        $vendor->name = $request->name;
+        // $vendor->logo = $request->logo;
+        // Storage::download($request->logo);
+        Storage::disk('public')->put('vendors', $request->logo);
+        $vendor->logo = $request->file('logo')->store('vendors');
+        $vendor->save();
+        return redirect()->route('vendor.index')->with(['message' => 'Vendor Added']);
     }
 
     /**
