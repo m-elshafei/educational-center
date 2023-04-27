@@ -1,14 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Companies')
+@section('title', 'companies')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Companies</h1>
+        <h1 class="text-center">{{ __('message.companies') }}</h1>
         @if (Auth::check() && Auth::user())
             <div class="d-flex justify-content-end mb-3">
                 <div><a name="" id="" class="btn btn-primary" target="_blank"
-                        href="{{ route('company.create') }}" role="button">Add
-                        New
-                        Company</a></div>
+                        href="{{ route('company.create') }}" role="button">{{ __('message.add_company') }}</a>
+                </div>
             </div>
         @endif
         @if (session()->has('message'))
@@ -21,13 +20,13 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">name</th>
-                        <th scope="col">owner</th>
-                        <th scope="col">tax numebr</th>
-                        <th scope="col">created at</th>
-                        <th scope="col">updated at</th>
+                        <th scope="col">{{ __('message.name') }}</th>
+                        <th scope="col">{{ __('message.owner') }}</th>
+                        <th scope="col">{{ __('message.tax_numebr') }}</th>
+                        <th scope="col">{{ __('message.created_at') }}</th>
+                        <th scope="col">{{ __('message.updated_at') }}</th>
                         @if (Auth::check() && Auth::user())
-                            <th scope="col">Actions</th>
+                            <th scope="col">{{ __('message.actions') }}</th>
                         @endif
                     </tr>
                 </thead>

@@ -13,6 +13,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\CourseStudentController;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,12 @@ Route::middleware(['auth'])->group(function () {
     // Route::resource('/employee', EmployeeController::class);
     // Route::resource('/schedule', ScheduleController::class);
     Route::resource('/vendor', VendorController::class);
+    route::get('changelang/{locale}', function ($locale) {
+        if (!in_array($locale, ['ar', 'en'])) {
+            abort(400);
+        };
+        session()->put('locale', $locale);
+        App::setLocale($locale);
+        return redirect()->back();
+    })->name('changelang');
 });

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ __('message.dir') }}">
 
 <head>
     <meta charset="utf-8">
@@ -35,34 +35,35 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">Companies</a>
+                            <a class="nav-link" href="{{ url('/') }}">{{ __('message.companies') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('branch') }}">Branches</a>
+                            <a class="nav-link" href="{{ url('branch') }}">{{ __('message.branches') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('manager') }}">Managers</a>
+                            <a class="nav-link" href="{{ url('manager') }}">{{ __('message.managers') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('vendor') }}">Vendors</a>
+                            <a class="nav-link" href="{{ url('vendor') }}">{{ __('message.vendors') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('category') }}">Categories</a>
+                            <a class="nav-link" href="{{ url('category') }}">{{ __('message.categories') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('classroom') }}">Class_Rooms</a>
+                            <a class="nav-link" href="{{ url('classroom') }}">{{ __('message.class_rooms') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('course') }}">Courses</a>
+                            <a class="nav-link" href="{{ url('course') }}">{{ __('message.courses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('course_student') }}">Course_Students</a>
+                            <a class="nav-link"
+                                href="{{ url('course_student') }}">{{ __('message.course_students') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('employee') }}">Employees</a>
+                            <a class="nav-link" href="{{ url('employee') }}">{{ __('message.employees') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('schedule') }}">Schedules</a>
+                            <a class="nav-link" href="{{ url('schedule') }}">{{ __('message.schedules') }}</a>
                         </li>
 
                     </ul>
@@ -86,14 +87,25 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    @if (session()->has('locale'))
+                                        @if (session('locale') == 'ar')
+                                            {{ Auth::user()->name_ar }}
+                                        @else
+                                            {{ Auth::user()->name }}
+                                        @endif
+                                    @else
+                                        {{ Auth::user()->name }}
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('message.logout') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('changelang', __('message.lang_code')) }}">
+                                        {{ __('message.lang') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

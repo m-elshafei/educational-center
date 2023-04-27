@@ -35,13 +35,19 @@
                                 <td><img width="50px" src="{{ $vendor->logo }}" class="img-fluid rounded-top"
                                         alt="">
                                 </td>
+                                <td><a href="{{ $vendor->logo }}">Open </a><br>
+                                    <a download href="{{ asset($vendor->logo) }}"> Download</a>
+                                </td>
                             @else
                                 <td><img width="50px" src="{{ 'storage/' . $vendor->logo }}" class="img-fluid rounded-top"
                                         alt="">
                                 </td>
+                                <td><a href="{{ 'storage/' . $vendor->logo }}">Open </a><br>
+                                    <a download href="{{ asset('storage/' . $vendor->logo) }}"> Download</a>
+                                </td>
                             @endif
 
-                            <td><a download href="{{ $vendor->logo }}">Open </a><br>
+                            <td><a href="{{ $vendor->logo }}">Open </a><br>
                                 <a download href="{{ asset('storage/' . $vendor->logo) }}"> Download</a>
                             </td>
                             <td>{{ $vendor->created_at }}</td>

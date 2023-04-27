@@ -1,0 +1,25 @@
+<?php
+return [
+    'companies' => 'Campanies',
+    'vendors' => 'Vendors',
+    'branches' => 'Branches',
+    'managers' => 'Managers',
+    'categories' => 'Categories',
+    'class_rooms' => 'Class Rooms',
+    'courses' => 'Courses',
+    'course_students' => 'Course Students',
+    'employees' => 'Employees',
+    'schedules' => 'Schedules',
+    'lang' => 'العربيه',
+    'lang_code' => 'ar',
+    'add_company' => 'Add New Campany',
+    'name' => 'Name',
+    'owner' => 'Owner',
+    'tax_numebr' => 'Tax Number',
+    'created_at' => 'Created at',
+    'updated_at' => 'Updated at',
+    'actions' => 'Actions',
+    'dir' => 'ltr',
+    'logout' => 'logout',
+
+];
