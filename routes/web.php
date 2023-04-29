@@ -52,8 +52,8 @@ Route::middleware(['auth'])->group(function () {
     // Route::resource('/home', CompanyController::class);
     // Route::resource('/company', CompanyController::class);
     Route::resource('/classroom', ClassRoomController::class);
-    // Route::resource('/course', CourseController::class);
-    // Route::resource('/course_student', CourseStudentController::class);
+    Route::resource('/course', CourseController::class);
+    Route::resource('/course_student', CourseStudentController::class);
     // Route::resource('/employee', EmployeeController::class);
     // Route::resource('/schedule', ScheduleController::class);
     Route::resource('/vendor', VendorController::class);

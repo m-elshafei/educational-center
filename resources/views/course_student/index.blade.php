@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Branches')
+@section('title', 'Course Students')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Branches of {{ $branches->first()->company->name }}</h1>
+        <h1 class="text-center">Course Students</h1>
         <div class="d-flex justify-content-end mb-3">
             <div><a name="" id="" class="btn btn-primary" target="_blank"
-                    href="{{ route('companies.branches.create', $branches->first()->company->id) }}" role="button">Add New
-                    Branch</a></div>
+                    href="{{ route('course_student.create') }}" role="button">Add New
+                    Course Student</a></div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -26,16 +26,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($branches as $key => $branch)
+                    @forelse ($course_students as $key => $course_student)
                         <tr class="">
-                            <td scope="row">{{ $key + $branches->firstItem() }}</td>
-                            <td>{{ $branch->name }}</td>
-                            <td>{{ $branch->location }}</td>
-                            <td>{{ $branch->created_at }}</td>
-                            <td>{{ $branch->updated_at }}</td>
+                            <td scope="row">{{ $key + $course_students->firstItem() }}</td>
+                            <td>{{ $course_student->name }}</td>
+                            <td>{{ $course_student->location }}</td>
+                            <td>{{ $course_student->created_at }}</td>
+                            <td>{{ $course_student->updated_at }}</td>
                             <td>
                                 <div class="d-flex justify-content-evenly">
-                                    <form action='{{ route('companies.delete', $branch->id) }}' method="post">
+                                    <form action='{{ route('companies.delete', $course_student->id) }}' method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">
@@ -43,7 +43,7 @@
                                         </button>
                                     </form>
                                     <a name="" id="" class="btn btn-primary"
-                                        href="{{ route('companies.edit', $branch->id) }}" role="button">
+                                        href="{{ route('companies.edit', $course_student->id) }}" role="button">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div>
@@ -56,8 +56,8 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $branches->links('vendor.pagination.simple-bootstrap-5') }} --}}
-            {{ $branches->links() }}
+            {{-- {{ $course_students->links('vendor.pagination.simple-bootstrap-5') }} --}}
+            {{ $course_students->links() }}
         </div>
 
     </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -12,8 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = Course::paginate(10);
-        return view('courses.index', compact('course'));
+        $courses = Course::paginate(10);
+        return view('courses.index', compact('courses'));
     }
 
     /**
@@ -21,7 +23,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $vendors = Vendor::all();
+        return view('courses.create', compact('vendors', 'categories'));
     }
 
     /**
@@ -29,7 +33,15 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'hours' => 'required|max:1',
+            'category_id' => 'required',
+            'vendor_id' => 'required',
+        ]);
+        Course::create($request->except('_token'));
+        return redirect()->route('course.index')->with('message', 'Course Added');
     }
 
     /**
@@ -43,24 +55,29 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Course $course)
+    public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $vendors = Vendor::all();
+        $courses = Course::find($id);
+        return view('courses.edit', compact('courses', 'categories', 'vendors'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, $id)
     {
-        //
+        Course::find($id)->update($request->except('_token'));
+        return redirect()->route('course.index')->with('message', 'Course Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-        //
+        Course::destroy($id);
+        return redirect()->route('course.index')->with('message', 'Course Deleted');
     }
 }

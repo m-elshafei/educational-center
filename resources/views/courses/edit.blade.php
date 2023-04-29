@@ -1,35 +1,61 @@
 @extends('layouts.app')
-@section('title', 'Edit Company')
+@section('title', 'Edit Course')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Edit Company</h1>
-        <form method="POST" action="{{ route('companies.update',$company->id) }}">
+        <h1 class="text-center">Edit Course</h1>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form method="POST" action="{{ route('course.update', $courses->id) }}">
             @method('patch')
             @csrf
-            {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
             <div class="row border rounded m-2">
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input value="{{ $company->name }}" type="text" class="form-control" name="name" id="name"
-                            aria-describedby="helpId" placeholder="name">
+                        <input value="{{ $courses->name }}" type="text" class="form-control" name="name"
+                            id="name" aria-describedby="helpId" placeholder="Name">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="owner" class="form-label">Owner</label>
-                        <input value="{{ $company->owner }}" type="text" class="form-control" name="owner"
-                            id="owner" aria-describedby="helpId" placeholder="owner">
+                        <label for="price" class="form-label">Price</label>
+                        <input value="{{ $courses->price }}" type="text" class="form-control" name="price"
+                            id="price" aria-describedby="helpId" placeholder="Price">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="tax_numebr" class="form-label">Tax Number</label>
-                        <input value="{{ $company->tax_numebr }}" type="text" class="form-control" name="tax_numebr"
-                            id="tax_numebr" aria-describedby="helpId" placeholder="Tax Number">
+                        <label for="hours" class="form-label">Hours</label>
+                        <input value="{{ $courses->hours }}" type="number" class="form-control" name="hours"
+                            id="hours" aria-describedby="helpId" placeholder="Hours">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6">
+                    <label for="formControlInput" class="form-label">Vendor</label>
+                    <select required name="vendor_id" class="form-select" aria-label="Default select">
+                        <option value="{{ $courses->vendor->name }}">{{ $courses->vendor->name }}</option>
+                        @foreach ($vendors as $key => $vendor)
+                            <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="formControlInput" class="form-label">Category</label>
+                    <select required name="category_id" class="form-select" aria-label="Default select">
+                        <option value="{{ $courses->category->name }}">{{ $courses->category->name }}</option>
+                        @foreach ($categories as $key => $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
                     <div class="d-flex justify-content-center mt-4">
                         <div><button type="submit" class="btn btn-lg btn-primary">Save</button></div>
                     </div>
