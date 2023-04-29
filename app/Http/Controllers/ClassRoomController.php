@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\ClassRoom;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -15,7 +16,8 @@ class ClassRoomController extends Controller
     public function index()
     {
         $class_rooms = ClassRoom::paginate(10);
-        return view('class_rooms.index', compact('class_rooms'));
+        $vendors = Vendor::all();
+        return view('class_rooms.index', compact('class_rooms', 'vendors'));
     }
 
     /**
