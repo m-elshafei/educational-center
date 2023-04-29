@@ -46,9 +46,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('vendor') }}">{{ __('message.vendors') }}</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ url('category') }}">{{ __('message.categories') }}</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('classroom') }}">{{ __('message.class_rooms') }}</a>
                         </li>

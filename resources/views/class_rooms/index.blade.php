@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Branches')
+@section('title', 'Class Room')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Branches of {{ $branches->first()->company->name }}</h1>
+        <h1 class="text-center">Class Room </h1>
         <div class="d-flex justify-content-end mb-3">
-            <div><a name="" id="" class="btn btn-primary" target="_blank"
-                    href="{{ route('companies.branches.create', $branches->first()->company->id) }}" role="button">Add New
-                    Branch</a></div>
+            <div><a name="" id="" class="btn btn-primary" target="_blank" href="{{ route('classroom.create') }}"
+                    role="button">Add New
+                    class_room</a></div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -18,24 +18,32 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">name</th>
-                        <th scope="col">location</th>
-                        <th scope="col">created at</th>
-                        <th scope="col">updated at</th>
+                        <th scope="col">Name</th>
+                        <th scope="col" style="width: 30%">Configration</th>
+                        <th scope="col">Capacity</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col">Updated at</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($branches as $key => $branch)
+                    @forelse ($class_rooms as $key => $class_room)
                         <tr class="">
-                            <td scope="row">{{ $key + $branches->firstItem() }}</td>
-                            <td>{{ $branch->name }}</td>
-                            <td>{{ $branch->location }}</td>
-                            <td>{{ $branch->created_at }}</td>
-                            <td>{{ $branch->updated_at }}</td>
+                            <td scope="row">{{ $key + $class_rooms->firstItem() }}</td>
+                            <td>{{ $class_room->name }}</td>
+                            @if ($class_room->configration)
+                                <td>{{ $class_room->configration }}</td>
+                            @else
+                                <td>{{ 'No configration' }}</td>
+                            @endif
+                            <td>{{ $class_room->capacity }}</td>
+                            <td>{{ $class_room->branch->name }}</td>
+                            <td>{{ $class_room->created_at }}</td>
+                            <td>{{ $class_room->updated_at->diffForHumans() }}</td>
                             <td>
                                 <div class="d-flex justify-content-evenly">
-                                    <form action='{{ route('companies.delete', $branch->id) }}' method="post">
+                                    <form action='{{ route('classroom.destroy', $class_room->id) }}' method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">
@@ -43,7 +51,7 @@
                                         </button>
                                     </form>
                                     <a name="" id="" class="btn btn-primary"
-                                        href="{{ route('companies.edit', $branch->id) }}" role="button">
+                                        href="{{ route('classroom.edit', $class_room->id) }}" role="button">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div>
@@ -56,8 +64,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $branches->links('vendor.pagination.simple-bootstrap-5') }} --}}
-            {{ $branches->links() }}
+            {{ $class_rooms->links() }}
         </div>
 
     </div>

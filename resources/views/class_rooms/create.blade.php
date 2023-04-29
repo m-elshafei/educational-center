@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title', 'Add New Branch')
+@section('title', 'Create New Branch')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Add New Branch</h1>
+        <h1 class="text-center">Create New Branch</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -12,29 +12,38 @@
                 </ul>
             </div>
         @endif
-        <form method="POST" action="{{ route('companies.branches.store', ['company_id' => $id]) }}">
+        <form method="POST" action="{{ route('classroom.store') }}">
             @csrf
-            {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
             <div class="row border rounded m-2">
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input value="{{ old('name') }}" type="text" class="form-control" name="name" id="name"
-                            aria-describedby="helpId" placeholder="name">
+                        <input required value="{{ old('name') }}" type="text" class="form-control" name="name"
+                            id="name" aria-describedby="helpId" placeholder="name">
                     </div>
-                    {{--  @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror --}}
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="location" class="form-label">Location</label>
-                        <input value="{{ old('location') }}" type="text" class="form-control" name="location" id="location" aria-describedby="helpId"
-                            placeholder="location">
-                        {{-- @error('location')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror --}}
+                        <label for="configration" class="form-label">Configration</label>
+                        <input value="{{ old('configration') }}" type="text" class="form-control" name="configration"
+                            id="configration" aria-describedby="helpId" placeholder="Configration">
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="capacity" class="form-label">Capacity</label>
+                        <input required value="{{ old('capacity') }}" type="text" class="form-control" name="capacity"
+                            id="capacity" aria-describedby="helpId" placeholder="Capacity">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="formControlInput" class="form-label">Branch</label>
+                    <select required name="branch_id" class="form-select" aria-label="Default select">
+                        <option value="{{ old('branch_id') }}">Open this select menu</option>
+                        @foreach ($branches as $key => $branch)
+                            <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex justify-content-center mt-4">

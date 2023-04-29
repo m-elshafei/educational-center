@@ -14,7 +14,6 @@
         @endif
         <form method="POST" action="{{ route('companies.branches.store', ['company_id' => $id]) }}">
             @csrf
-            {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
             <div class="row border rounded m-2">
                 <div class="col-md-6">
                     <div class="mb-3">
@@ -22,18 +21,12 @@
                         <input value="{{ old('name') }}" type="text" class="form-control" name="name" id="name"
                             aria-describedby="helpId" placeholder="name">
                     </div>
-                    {{--  @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror --}}
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="location" class="form-label">Location</label>
-                        <input value="{{ old('location') }}" type="text" class="form-control" name="location" id="location" aria-describedby="helpId"
-                            placeholder="location">
-                        {{-- @error('location')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror --}}
+                        <input value="{{ old('location') }}" type="text" class="form-control" name="location"
+                            id="location" aria-describedby="helpId" placeholder="location">
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::resource('/category', CategoryController::class);
     // Route::resource('/home', CompanyController::class);
     // Route::resource('/company', CompanyController::class);
-    // Route::resource('/classroom', ClassRoomController::class);
+    Route::resource('/classroom', ClassRoomController::class);
     // Route::resource('/course', CourseController::class);
     // Route::resource('/course_student', CourseStudentController::class);
     // Route::resource('/employee', EmployeeController::class);

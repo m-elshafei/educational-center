@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ClassRoom extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'configration', 'capacity', 'branch_id'];
     public function branch()
     {
         return $this->belongsTo(Branch::class);
