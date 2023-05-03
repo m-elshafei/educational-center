@@ -47,11 +47,11 @@
                                 </td>
                             @endif
 
-                            <td><a href="{{ $vendor->logo }}">Open </a><br>
+                            {{-- <td><a href="{{ $vendor->logo }}">Open </a><br>
                                 <a download href="{{ asset('storage/' . $vendor->logo) }}"> Download</a>
-                            </td>
+                            </td> --}}
                             <td>{{ $vendor->created_at }}</td>
-                            <td>{{ $vendor->updated_at }}</td>
+                            <td>{{ $vendor->updated_at->diffforhumans () }}</td>
                             <td>
                                 <div class="d-flex justify-content-evenly">
                                     <form action='' method="post">
