@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <link href="{{ asset('build/assets/login.css') }}" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -56,6 +56,9 @@
                             <a class="nav-link" href="{{ url('course') }}">{{ __('message.courses') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('contact') }}">{{ __('message.contact_us') }}</a>
+                        </li>
+                        {{-- <li class="nav-item">
                             <a class="nav-link"
                                 href="{{ url('course_student') }}">{{ __('message.course_students') }}</a>
                         </li>
@@ -64,7 +67,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('schedule') }}">{{ __('message.schedules') }}</a>
-                        </li>
+                        </li> --}}
 
                     </ul>
 
@@ -87,7 +90,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (session()->has('locale'))
+                                    @if (session())
                                         @if (session('locale') == 'ar')
                                             {{ Auth::user()->name_ar }}
                                         @else

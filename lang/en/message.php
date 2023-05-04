@@ -21,5 +21,5 @@ return [
     'actions' => 'Actions',
     'dir' => 'ltr',
     'logout' => 'logout',
-
+    'contact_us' => 'Contact us'
 ];

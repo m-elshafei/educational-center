@@ -21,4 +21,5 @@ return [
     'actions' => 'الادوات',
     'dir' => 'rtl',
     'logout' => 'تسجيل الخروج',
+    'contact_us' => 'اتصل بنا'
 ];
