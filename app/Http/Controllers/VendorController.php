@@ -16,8 +16,8 @@ class VendorController extends Controller
      */
     public function index()
     {
-        $vendors = Vendor::paginate(10);
-        return view('Vendors.index', compact('vendors'));
+        $vendors = Vendor::orderBy('created_at', 'desc')->paginate(10);
+        return view('Vendors.index', compact('vendors',));
     }
 
     /**
