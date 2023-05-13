@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Branches')
+@section('title', 'Employees')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Branches of {{ $branches->first()->company->name }}</h1>
+        <h1 class="text-center">Employees</h1>
         <div class="d-flex justify-content-end mb-3">
             <div><a name="" id="" class="btn btn-primary" target="_blank"
-                    href="{{ route('companies.branches.create', $branches->first()->company->id) }}" role="button">Add New
-                    Branch</a></div>
+                    href="{{ route('employee.create') }}" role="button">Add New
+                    Employee</a></div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -18,24 +18,28 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">name</th>
-                        <th scope="col">location</th>
+                        <th scope="col">job title</th>
+                        <th scope="col">salary</th>
+                        <th scope="col">hire date</th>
+                        <th scope="col">user </th>
                         <th scope="col">created at</th>
                         <th scope="col">updated at</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($branches as $key => $branch)
+                    @forelse ($employees as $key => $employee)
                         <tr class="">
-                            <td scope="row">{{ $key + $branches->firstItem() }}</td>
-                            <td>{{ $branch->name }}</td>
-                            <td>{{ $branch->location }}</td>
-                            <td>{{ $branch->created_at }}</td>
-                            <td>{{ $branch->updated_at }}</td>
+                            <td scope="row">{{ $key + $employees->firstItem() }}</td>
+                            <td>{{ $employee->job_title }}</td>
+                            <td>{{ $employee->salary }}</td>
+                            <td>{{ $employee->hire_date }}</td>
+                            <td>{{ $employee->user->name  }}</td>
+                            <td>{{ $employee->created_at }}</td>
+                            <td>{{ $employee->updated_at }}</td>
                             <td>
                                 <div class="d-flex justify-content-evenly">
-                                    <form action='{{ route('companies.delete', $branch->id) }}' method="post">
+                                    <form action='{{ route('employee.destroy', $employee->id) }}' method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">
@@ -43,7 +47,7 @@
                                         </button>
                                     </form>
                                     <a name="" id="" class="btn btn-primary"
-                                        href="{{ route('companies.edit', $branch->id) }}" role="button">
+                                        href="{{ route('employee.edit', $employee->id) }}" role="button">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div>
@@ -56,8 +60,8 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $branches->links('vendor.pagination.simple-bootstrap-5') }} --}}
-            {{ $branches->links() }}
+            {{-- {{ $employees->links('vendor.pagination.simple-bootstrap-5') }} --}}
+            {{ $employees->links() }}
         </div>
 
     </div>
