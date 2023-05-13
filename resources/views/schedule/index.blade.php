@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Branches')
+@section('title', 'Schedules')
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Branches of {{ $branches->first()->company->name }}</h1>
+        <h1 class="text-center">Schedules</h1>
         <div class="d-flex justify-content-end mb-3">
-            <div><a name="" id="" class="btn btn-primary" target="_blank"
-                    href="{{ route('companies.branches.create', $branches->first()->company->id) }}" role="button">Add New
-                    Branch</a></div>
+            <div><a name="" id="" class="btn btn-primary" target="_blank" href="{{ route('schedule.create') }}"
+                    role="button">Add New
+                    schedule</a></div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -18,24 +18,45 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">name</th>
-                        <th scope="col">location</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Start Time</th>
+                        <th scope="col">End Time</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Class Room</th>
+                        <th scope="col">Instructor</th>
+                        <th scope="col">Created By </th>
                         <th scope="col">created at</th>
                         <th scope="col">updated at</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($branches as $key => $branch)
+                    @forelse ($schedules as $key=>  $schedule)
+                                {{-- <td>{{ $schedule->instructor->user->name }}</td> --}}
+                        {{-- @dd( $schedule->instructor->user->name) --}}
+                        {{-- @dd($schedule->instructor->user->id) --}}
                         <tr class="">
-                            <td scope="row">{{ $key + $branches->firstItem() }}</td>
-                            <td>{{ $branch->name }}</td>
-                            <td>{{ $branch->location }}</td>
-                            <td>{{ $branch->created_at }}</td>
-                            <td>{{ $branch->updated_at }}</td>
+                            <td scope="row">{{ $key + $schedules->firstItem() }}</td>
+                            <td>{{ $schedule->start_date }}</td>
+                            <td>{{ $schedule->end_date }}</td>
+                            <td>{{ $schedule->start_time }}</td>
+                            <td>{{ $schedule->end_time }}</td>
+                            <td>{{ $schedule->course->name }}</td>
+                            <td>{{ $schedule->class_room->name }}</td>
+                            {{-- @foreach ($assa as $value)
+                                @break
+                             @endforeach --}}
+                            {{-- <td>{{ $value}}</td> --}}
+                            {{-- <td>{{ $schedule->instructor->name }}</td> --}}
+                            {{-- <td>{{$schedule->instructor->user->name }}</td> --}}
+                            {{-- @dd($schedule->instructor->user->name) --}}
+                            <td>{{ $schedule->user->name }}</td>
+                            <td>{{ $schedule->created_at }}</td>
+                            <td>{{ $schedule->updated_at }}</td>
                             <td>
                                 <div class="d-flex justify-content-evenly">
-                                    <form action='{{ route('companies.delete', $branch->id) }}' method="post">
+                                    <form action='{{ route('schedule.destroy', $schedule->id) }}' method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">
@@ -43,7 +64,7 @@
                                         </button>
                                     </form>
                                     <a name="" id="" class="btn btn-primary"
-                                        href="{{ route('companies.edit', $branch->id) }}" role="button">
+                                        href="{{ route('schedule.edit', $schedule->id) }}" role="button">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div>
@@ -56,8 +77,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $branches->links('vendor.pagination.simple-bootstrap-5') }} --}}
-            {{ $branches->links() }}
+            {{ $schedules->links() }}
         </div>
 
     </div>
