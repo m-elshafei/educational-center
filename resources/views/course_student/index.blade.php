@@ -4,9 +4,12 @@
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">Course Students</h1>
         <div class="d-flex justify-content-end mb-3">
-            <div><a name="" id="" class="btn btn-primary" target="_blank"
+            <div>
+                <a name="" id="" class="btn btn-primary" target="_blank"
                     href="{{ route('course_student.create') }}" role="button">Add New
-                    Course Student</a></div>
+                    Course Student
+                </a>
+            </div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -18,8 +21,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">name</th>
-                        <th scope="col">location</th>
+                        <th scope="col">student</th>
+                        <th scope="col">created_by</th>
                         <th scope="col">created at</th>
                         <th scope="col">updated at</th>
                         <th scope="col">Actions</th>
@@ -29,13 +32,14 @@
                     @forelse ($course_students as $key => $course_student)
                         <tr class="">
                             <td scope="row">{{ $key + $course_students->firstItem() }}</td>
-                            <td>{{ $course_student->name }}</td>
-                            <td>{{ $course_student->location }}</td>
+                            <td>{{ $course_student->student->name }}</td>
+                            <td>{{ $course_student->user->name }}</td>
                             <td>{{ $course_student->created_at }}</td>
                             <td>{{ $course_student->updated_at }}</td>
                             <td>
                                 <div class="d-flex justify-content-evenly">
-                                    <form action='{{ route('companies.delete', $course_student->id) }}' method="post">
+                                    <form action='{{ route('course_student.destroy', $course_student->id) }}'
+                                        method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">
@@ -43,7 +47,7 @@
                                         </button>
                                     </form>
                                     <a name="" id="" class="btn btn-primary"
-                                        href="{{ route('companies.edit', $course_student->id) }}" role="button">
+                                        href="{{ route('course_student.edit', $course_student->id) }}" role="button">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div>
@@ -56,7 +60,6 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $course_students->links('vendor.pagination.simple-bootstrap-5') }} --}}
             {{ $course_students->links() }}
         </div>
 
