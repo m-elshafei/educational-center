@@ -1,12 +1,11 @@
 @extends('layouts.app')
-@section('title', 'Categories')
+@section('title',  __('message.categories'))
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Categories</h1>
+        <h1 class="text-center">{{  __('message.categories') }}</h1>
         <div class="d-flex justify-content-end mb-3">
             <div><a name="" id="" class="btn btn-primary" target="_blank" href="{{ route('category.create') }}"
-                    role="button">Add New
-                    Categories</a></div>
+                    role="button">{{__('message.add_new_category') }}</a></div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -22,10 +21,10 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Created at</th>
-                        <th scope="col">Updated at</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{__('message.name') }}</th>
+                        <th scope="col">{{__('message.created_at') }}</th>
+                        <th scope="col">{{__('message.updated_at') }}</th>
+                        <th scope="col">{{__('message.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,7 +52,7 @@
                         </tr>
                     @empty
                         <tr class="">
-                            <td colspan="6">No Data Found</td>
+                            <td colspan="6">{{__('message.no_data_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>
