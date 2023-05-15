@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'companies')
+@section('title', __('message.companies'))
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">{{ __('message.companies') }}</h1>
@@ -65,7 +65,7 @@
                         </tr>
                     @empty
                         <tr class="">
-                            <td colspan="6">No Data Found</td>
+                            <td colspan="6">{{  __('message.no_data_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>
