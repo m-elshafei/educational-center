@@ -1,6 +1,6 @@
 > Establishing an integrated educational center system
 
-### SECCP Quick Start
+### Center Quick Start
 
 1. Install `Composer` dependencies.
    
