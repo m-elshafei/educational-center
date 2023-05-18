@@ -6,8 +6,12 @@
    
         composer install
 
+2. Install `Npm` dependencies.
+   
+        npm install
 
-4. Copy `.env.example` file and create duplicate. Use `cp` command for Linux or Max user.
+
+3. Copy `.env.example` file and create duplicate. Use `cp` command for Linux or Max user.
 
         cp .env.example .env
 
@@ -16,25 +20,29 @@
         copy .env.example .env
    
 
-5. Create a new MySQL database and fill the database details `DB_DATABASE` in `.env` file.
+4. Create a new MySQL database and fill the database details `DB_DATABASE` in `.env` file.
 
 
-6. The below command will create tables into database using Laravel migration and seeder.
+5. The below command will create tables into database using Laravel migration and seeder.
 
         php artisan migrate:fresh --seed
 
 
-7. Generate your application encryption key:
+6. Generate your application encryption key:
 
         php artisan key:generate
 
 
-8. Start the localhost server:
+7. Start the localhost server:
     
         php artisan serve
+
+8. Start the run the dev script:
+    
+        npm run dev
 
 
 # This Project Run on :  
 
--  PHP v8.2.x 
+-  PHP v8.0.x 
 -  Laravel v10.x 
