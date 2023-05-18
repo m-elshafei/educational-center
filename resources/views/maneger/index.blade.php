@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'managers')
+@section('title', __('message.managers'))
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Managers</h1>
+        <h1 class="text-center">{{  __('message.managers') }}</h1>
         @if (Auth::user())
             <div class="d-flex justify-content-end mb-3">
                 <div><a name="" id="" class="btn btn-primary" target="_blank"
-                        href="{{ route('manager.create') }}" role="button">Add New manager</a></div>
+                        href="{{ route('manager.create') }}" role="button">{{  __('message.add_new_manager') }}</a></div>
             </div>
         @endif
         @if (session('message'))
@@ -19,12 +19,12 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">name</th>
-                        <th scope="col">company</th>
-                        <th scope="col">created at</th>
-                        <th scope="col">updated at</th>
+                        <th scope="col">{{  __('message.name') }}</th>
+                        <th scope="col">{{  __('message.company') }}</th>
+                        <th scope="col">{{  __('message.created_at') }}</th>
+                        <th scope="col">{{  __('message.updated_at') }}</th>
                         @if (Auth::user())
-                            <th scope="col">Actions</th>
+                            <th scope="col">{{__('message.actions') }}</th>
                         @endif
                     </tr>
                 </thead>
@@ -59,7 +59,7 @@
                         </tr>
                     @empty
                         <tr class="">
-                            <td colspan="6">No Data Found</td>
+                            <td colspan="6">{{  __('message.no_data_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>
