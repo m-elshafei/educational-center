@@ -1,12 +1,11 @@
 @extends('layouts.app')
-@section('title', 'Employees')
+@section('title', __('message.employees'))
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Employees</h1>
+        <h1 class="text-center">{{ __('message.employees') }}</h1>
         <div class="d-flex justify-content-end mb-3">
-            <div><a name="" id="" class="btn btn-primary" target="_blank"
-                    href="{{ route('employee.create') }}" role="button">Add New
-                    Employee</a></div>
+            <div><a name="" id="" class="btn btn-primary" target="_blank" href="{{ route('employee.create') }}"
+                    role="button">{{ __('message.add_new_employee') }}</a></div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -18,13 +17,13 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">job title</th>
-                        <th scope="col">salary</th>
-                        <th scope="col">hire date</th>
-                        <th scope="col">user </th>
-                        <th scope="col">created at</th>
-                        <th scope="col">updated at</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{ __('message.job_title') }}</th>
+                        <th scope="col">{{ __('message.salary') }}</th>
+                        <th scope="col">{{ __('message.hire_date') }}</th>
+                        <th scope="col">{{ __('message.name') }}</th>
+                        <th scope="col">{{ __('message.created_at') }}</th>
+                        <th scope="col">{{ __('message.updated_at') }}</th>
+                        <th scope="col">{{ __('message.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +33,7 @@
                             <td>{{ $employee->job_title }}</td>
                             <td>{{ $employee->salary }}</td>
                             <td>{{ $employee->hire_date }}</td>
-                            <td>{{ $employee->user->name  }}</td>
+                            <td>{{ $employee->user->name }}</td>
                             <td>{{ $employee->created_at }}</td>
                             <td>{{ $employee->updated_at }}</td>
                             <td>
@@ -60,9 +59,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {{ $employees->links('vendor.pagination.simple-bootstrap-5') }} --}}
             {{ $employees->links() }}
         </div>
-
     </div>
 @endsection
