@@ -3,6 +3,16 @@
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">{{ __('message.companies') }}</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="GET" action="{{ route('company.index') }}">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="search" id="search" aria-describedby="helpId"
+                            placeholder="Search By Name">
+                    </div>
+                </form>
+            </div>
+        </div>
         @if (Auth::check() && Auth::user())
             <div class="d-flex justify-content-end mb-3">
                 <div><a name="" id="" class="btn btn-primary" target="_blank"
@@ -65,7 +75,7 @@
                         </tr>
                     @empty
                         <tr class="">
-                            <td colspan="6">{{  __('message.no_data_found') }}</td>
+                            <td colspan="6">{{ __('message.no_data_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

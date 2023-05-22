@@ -6,7 +6,6 @@
         <form method="POST" action="{{ route('company.update', $company->id) }}">
             @method('patch')
             @csrf
-            {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
             <div class="row border rounded m-2">
                 <div class="col-md-6">
                     <div class="mb-3">
@@ -29,11 +28,7 @@
                             id="tax_numebr" aria-describedby="helpId" placeholder="Tax Number">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-center mt-4">
-                        <div><button type="submit" class="btn btn-lg btn-primary">{{ __('message.save') }}</button></div>
-                    </div>
-                </div>
+               <x-button-save></x-button-save>
             </div>
         </form>
     </div>
