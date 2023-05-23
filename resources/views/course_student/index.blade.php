@@ -1,13 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Course Students')
+@section('title',  __('message.course_students'))
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Course Students</h1>
+        <h1 class="text-center">{{  __('message.course_students') }}</h1>
         <div class="d-flex justify-content-end mb-3">
             <div>
                 <a name="" id="" class="btn btn-primary" target="_blank"
-                    href="{{ route('course_student.create') }}" role="button">Add New
-                    Course Student
+                    href="{{ route('course_student.create') }}" role="button">{{  __('message.add_new_course_students') }}
                 </a>
             </div>
         </div>
@@ -21,11 +20,11 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">student</th>
-                        <th scope="col">created_by</th>
-                        <th scope="col">created at</th>
-                        <th scope="col">updated at</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{  __('message.student') }}</th>
+                        <th scope="col">{{  __('message.created_by') }}</th>
+                        <th scope="col">{{  __('message.created_at') }}</th>
+                        <th scope="col">{{  __('message.updated_at') }}</th>
+                        <th scope="col">{{  __('message.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +54,7 @@
                         </tr>
                     @empty
                         <tr class="">
-                            <td colspan="6">No Data Found</td>
+                            <td colspan="6">{{  __('message.no_data_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>
