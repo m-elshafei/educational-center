@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\CourseStudent;
+use App\Models\Schedule;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CourseStudentController extends Controller
@@ -21,8 +24,9 @@ class CourseStudentController extends Controller
      */
     public function create()
     {
-        // $coures_student=CourseStudent::
-        //        course_student
+        $students = User::all();
+        $schedules = Course::all();
+       return view('course_student.create',compact('students','schedules'));
     }
 
     /**
@@ -44,9 +48,10 @@ class CourseStudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CourseStudent $courseStudent)
+    public function edit($id)
     {
-        //
+        $courses = CourseStudent::find($id);
+        return view('course_student.edit',compact('courses'));
     }
 
     /**

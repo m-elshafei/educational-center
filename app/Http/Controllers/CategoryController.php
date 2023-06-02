@@ -34,7 +34,7 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
         Category::create($request->except('_token'));
-        return redirect()->route('category.index')->with('message', 'Category Added');
+        return redirect()->route('category.index')->with('message', __('message.branch_added'));
     }
 
     /**
@@ -60,7 +60,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $class_room = Category::find($id)->update($request->except('_token'));
-        return redirect()->route('category.index')->with('message', 'Category Updated');
+        return redirect()->route('category.index')->with('message', __('message.category_update'));
     }
 
     /**
@@ -71,9 +71,9 @@ class CategoryController extends Controller
         try {
             Category::destroy($id);
             // dd(Category::destroy($id));
-            return redirect()->route('category.index')->with('message', 'Category Deleted');
+            return redirect()->route('category.index')->with('message',  __('message.category_delete'));
         } catch (Exception $e) {
-            return redirect()->route('category.index')->with('message_er', 'Cannot Delete This Category');
+            return redirect()->route('category.index')->with('message_er', __('message.category_cannot_delete'));
             // return redirect()->route('classroom.index')->with('message', $e->getMessage());
         }
         // Category::destroy($id);

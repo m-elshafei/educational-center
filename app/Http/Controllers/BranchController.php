@@ -40,7 +40,7 @@ class BranchController extends Controller
             'company_id' => 'required'
         ]);
         Branch::create($request->except('_token'));
-        return redirect()->route('branch.index')->with('message', 'Branch Added');
+        return redirect()->route('branch.index')->with('message', __('message.category_added') );
     }
 
     /**
@@ -67,7 +67,7 @@ class BranchController extends Controller
     public function update(Request $request, string $id)
     {
         $branch = Branch::find($id)->update($request->except('_token'));
-        return redirect()->route('branch.index')->with('message', 'Branch Updated');
+        return redirect()->route('branch.index')->with('message', __('message.branch_update'));
     }
 
     /**
@@ -77,9 +77,8 @@ class BranchController extends Controller
     {
         try {
             Branch::destroy($id);
-            return redirect()->route('branch.index')->with('message', 'Branch Deleted');
+            return redirect()->route('branch.index')->with('message', __('message.branch_delete'));
         } catch (Exception $e) {
-            // return redirect()->route('branch.index')->with('message_err', 'Cannot Delete This Branch');
             return redirect()->route('branch.index')->with('message', $e->getMessage());
         }
     }
