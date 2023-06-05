@@ -13,10 +13,17 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-
         $companies = Company::paginate(10);
+    if ($request->search) {
+            // $companies->where('name','like','%'.$request->search.'%');
+            $companies->where(function($query) use($request){
+                $query->where('name','like','%'.$request->search.'%')
+                ->orWhere('owner','like','%'.$request->search.'%');
+            });
+            // dd($companies->toSql()); // return native sql
+        }
         return view('companies.index', compact('companies'));
     }
 

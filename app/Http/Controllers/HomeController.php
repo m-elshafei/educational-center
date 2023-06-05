@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Student;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         // return view('companies.index');
+        $students = Student::latest()->paginate(5);
+        return view('students', compact('students'));
     }
+
 }
