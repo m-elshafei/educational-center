@@ -35,6 +35,8 @@
                 </thead>
                 <tbody>
                     @forelse ($branches as $key => $branch)
+@dd($branch->company)
+
                         <tr class="">
                             <td scope="row">{{ $key + $branches->firstitem() }}</td>
                             <td>{{ $branch->name }}</td>

@@ -17,6 +17,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseStudentController;
+use App\Models\Employee;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/course_student', CourseStudentController::class);
     Route::resource('/vendor', VendorController::class);
     Route::resource('/contact',ContactController::class);
+    Route::resource('/employee',EmployeeController::class);
+    Route::resource('/schedule',ScheduleController::class);
     route::get('changelang/{locale}', function ($locale) {
         if (!in_array($locale, ['ar', 'en'])) {
             abort(400);

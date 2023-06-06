@@ -1,12 +1,11 @@
 @extends('layouts.app')
-@section('title', 'Courses')
+@section('title', __('message.courses'))
 @section('content')
     <div class="rounded bg-white p-3 m-3">
-        <h1 class="text-center">Courses</h1>
+        <h1 class="text-center">{{  __('message.courses') }}</h1>
         <div class="d-flex justify-content-end mb-3">
             <div><a name="" id="" class="btn btn-primary" target="_blank" href="{{ route('course.create') }}"
-                    role="button">Add New
-                    Course</a></div>
+                    role="button">{{  __('message.add_new_course') }}</a></div>
         </div>
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
@@ -18,14 +17,14 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Hours</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Vendor</th>
-                        <th scope="col">Created at</th>
-                        <th scope="col">Updated at</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{  __('message.name') }}</th>
+                        <th scope="col">{{  __('message.price') }}</th>
+                        <th scope="col">{{  __('message.hours') }}</th>
+                        <th scope="col">{{  __('message.category') }}</th>
+                        <th scope="col">{{  __('message.vendor') }}</th>
+                        <th scope="col">{{  __('message.created_at') }}</th>
+                        <th scope="col">{{  __('message.updated_at') }}</th>
+                        <th scope="col">{{  __('message.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>

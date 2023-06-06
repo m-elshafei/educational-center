@@ -60,9 +60,10 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vendor $vendor)
+    public function edit($id)
     {
-        //
+        $vendor = Vendor::find($id);
+       return view('vendors.edit',compact('vendor'));
     }
 
     /**

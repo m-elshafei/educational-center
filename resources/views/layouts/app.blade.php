@@ -56,9 +56,6 @@
                             <a class="nav-link" href="{{ url('course') }}">{{ __('message.courses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('contact') }}">{{ __('message.contact_us') }}</a>
-                        </li>
-                        {{-- <li class="nav-item">
                             <a class="nav-link"
                                 href="{{ url('course_student') }}">{{ __('message.course_students') }}</a>
                         </li>
@@ -67,7 +64,10 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('schedule') }}">{{ __('message.schedules') }}</a>
-                        </li> --}}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('contact') }}">{{ __('message.contact_us') }}</a>
+                        </li>
 
                     </ul>
 
@@ -92,13 +92,17 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (session())
                                         @if (session('locale') == 'ar')
-                                            {{ Auth::user()->name_ar }}
+                                            @if ( Auth::user()->name_ar)
+                                                {{ Auth::user()->name_ar }}
+                                            @else
+                                                {{ Auth::user()->name }}
+                                            @endif
                                         @else
                                             {{ Auth::user()->name }}
                                         @endif
                                     @else
                                         {{ Auth::user()->name }}
-                                        @endif
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
