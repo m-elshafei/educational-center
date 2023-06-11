@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -20,6 +21,8 @@ class User extends Authenticatable
         'name',
         'name_ar',
         'email',
+        'roles',
+        'status',
         'password',
     ];
 
@@ -40,6 +43,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'roles' => 'array',
     ];
     public function employee()
     {

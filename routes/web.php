@@ -2,22 +2,24 @@
 
 use App\Models\Branch;
 use App\Models\Contact;
+use App\Models\Employee;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ManegerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClassRoomController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseStudentController;
-use App\Models\Employee;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +56,8 @@ Route::middleware(['auth'])->group(function () {
         App::setLocale($locale);
         return redirect()->back();
     })->name('changelang');
+});
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 });

@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('build/assets/login.css') }}" rel="stylesheet">
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite([ 'resources/js/app.js'])
 </head>
 
 <body>
@@ -105,6 +105,7 @@
                                     @endif
                                 </a>
 
+
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -121,6 +122,15 @@
                                 </div>
                             </li>
                         @endguest
+                                <div class="dropdown dropdown-menu-end">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    users
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('users.index') }}">users</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('roles.index') }}">roles</a></li>
+                                </ul>
+                                </div>
                     </ul>
                 </div>
             </div>
