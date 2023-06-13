@@ -19,11 +19,13 @@ class UserSeeder extends Seeder
 
             'name' => 'moustafa',
             'name_ar' => 'مصطفي',
+            'email' => 'a@mail.com',
+            'email_verified_at' => now(),
             'password' => Hash::make(11111111),
             'role' => 'admin',
-            'email' => 'a@mail.com',
             'status' => 1,
             'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }
