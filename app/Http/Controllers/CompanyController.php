@@ -27,6 +27,7 @@ class CompanyController extends Controller
         return view('companies.index', compact('companies'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
