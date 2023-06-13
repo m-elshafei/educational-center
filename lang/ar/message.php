@@ -85,6 +85,8 @@ return [
     'category_update' => 'تم تحديث المسار',
     'category_delete' => 'تم حذف المسار',
     'category_cannot_delete' => 'لا يمكن حذف هذا المسار',
+    'users' => 'المستخدمين',
+    'permissions' => 'صلاحيات المستخدمين',
 
     'branch_added' => 'تم اضافه الفرع',
     'branch_update' => 'تم تحديث الفرع',

@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('build/assets/login.css') }}" rel="stylesheet">
     <!-- Scripts -->
-    @vite([ 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
@@ -66,6 +66,12 @@
                             <a class="nav-link" href="{{ url('schedule') }}">{{ __('message.schedules') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('users') }}">{{ __('message.users') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('roles') }}">{{ __('message.permissions') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('contact') }}">{{ __('message.contact_us') }}</a>
                         </li>
 
@@ -92,7 +98,7 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (session())
                                         @if (session('locale') == 'ar')
-                                            @if ( Auth::user()->name_ar)
+                                            @if (Auth::user()->name_ar)
                                                 {{ Auth::user()->name_ar }}
                                             @else
                                                 {{ Auth::user()->name }}
@@ -122,22 +128,25 @@
                                 </div>
                             </li>
                         @endguest
-                                <div class="dropdown dropdown-menu-end">
-                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    users
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('users.index') }}">users</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('roles.index') }}">roles</a></li>
-                                </ul>
-                                </div>
+                        {{-- <div class="dropdown dropdown-menu-end">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                users
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('users.index') }}">users</a></li>
+                                <li><a class="dropdown-item" href="{{ route('roles.index') }}">roles</a></li>
+                            </ul>
+                        </div> --}}
                     </ul>
                 </div>
             </div>
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

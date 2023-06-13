@@ -80,7 +80,8 @@ return [
     'branch_added' => 'Branch Added',
     'branch_update' => 'Branch Updated',
     'branch_delete' => 'Branch Deleted',
-
+    'users' => 'Users',
+    'permissions' => 'User permissions',
     'category_added' => 'Category Added',
     'category_update' => 'Category Updated',
     'category_delete' => 'Category Deleted',

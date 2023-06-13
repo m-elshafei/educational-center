@@ -14,17 +14,10 @@ class PermissionTableSeeder extends Seeder
     {
         //Permissions
         $permissions = [
-          'action',
-          'companies',
-          'branches',
-          'managers',
-          'vendors',
-          'categories',
-          'class_rooms',
-          'course_students',
-          'employees',
-          'schedules',
-          'action',
+            'show',
+            'create',
+            'edit',
+            'delete',
         ];
        
         foreach ($permissions as $permission) {

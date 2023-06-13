@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
             'email' => 'a@mail.com',
             'status' => 1,
             'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }
