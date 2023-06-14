@@ -32,51 +32,9 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('message.companies') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('branch') }}">{{ __('message.branches') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('manager') }}">{{ __('message.managers') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('vendor') }}">{{ __('message.vendors') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('category') }}">{{ __('message.categories') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('classroom') }}">{{ __('message.class_rooms') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('course') }}">{{ __('message.courses') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="{{ url('course_student') }}">{{ __('message.course_students') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('employee') }}">{{ __('message.employees') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('schedule') }}">{{ __('message.schedules') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('users') }}">{{ __('message.users') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('roles') }}">{{ __('message.permissions') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('contact') }}">{{ __('message.contact_us') }}</a>
-                        </li>
-
-                    </ul>
-
+                    @if (Auth::user())
+                        @include('layouts.master')
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -96,16 +54,8 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (session())
-                                        @if (session('locale') == 'ar')
-                                            @if (Auth::user()->name_ar)
-                                                {{ Auth::user()->name_ar }}
-                                            @else
-                                                {{ Auth::user()->name }}
-                                            @endif
-                                        @else
-                                            {{ Auth::user()->name }}
-                                        @endif
+                                    @if (session() && session('locale') == 'ar')
+                                        {{ Auth::user()->name_ar ? Auth::user()->name_ar : Auth::user()->name }}
                                     @else
                                         {{ Auth::user()->name }}
                                     @endif

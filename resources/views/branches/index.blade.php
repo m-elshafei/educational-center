@@ -35,8 +35,6 @@
                 </thead>
                 <tbody>
                     @forelse ($branches as $key => $branch)
-@dd($branch->company)
-
                         <tr class="">
                             <td scope="row">{{ $key + $branches->firstitem() }}</td>
                             <td>{{ $branch->name }}</td>
@@ -75,7 +73,5 @@
 
         </div>
         {{ $branches->links() }}
-        {{-- {{ $branches->links('vendor.pagination.bootstrap-5') }} --}}
-        {{-- {{ $branches->links('vendor.pagination.bootstrap-5') }} --}}
     </div>
 @endsection
