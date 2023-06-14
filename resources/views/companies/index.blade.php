@@ -48,7 +48,7 @@
                             <td>{{ $company->owner }}</td>
                             <td>{{ $company->tax_number }}</td>
                             <td>{{ $company->created_at }}</td>
-                            <td>{{ $company->updated_at->diffForHumans() }}</td>
+                            <td>{{ $company->updated_at }}</td>
                             @if (Auth::check() && Auth::user())
                                 <td>
                                     <div class="d-flex justify-content-evenly">

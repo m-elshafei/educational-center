@@ -16,6 +16,8 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $companies = Company::paginate(10);
+        // $companies = DB::table('companies')->paginate(10);
+
     if ($request->search) {
             // $companies->where('name','like','%'.$request->search.'%');
             $companies->where(function($query) use($request){

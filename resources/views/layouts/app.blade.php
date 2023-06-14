@@ -96,9 +96,11 @@
         <main class="py-4">
             <div class="container">
                 @yield('content')
+                @include('layouts.header')
             </div>
         </main>
     </div>
 </body>
+
 
 </html>
