@@ -54,22 +54,24 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (session() && session('locale') == 'ar')
+                                    {{-- @if (session() && session('locale') == 'ar')
                                         {{ Auth::user()->name_ar ? Auth::user()->name_ar : Auth::user()->name }}
                                     @else
                                         {{ Auth::user()->name }}
+                                    @endif --}}
+                                    @if (session('locale') == 'ar')
+                                        <img src="{{ Avatar::create(Auth::user()->name_ar)->toBase64() }}"
+                                            alt="profile image" class="avatar-img ">
+                                    @else
+                                        <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="profile image"
+                                            class="avatar-img ">
                                     @endif
                                 </a>
-
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('message.logout') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('changelang', __('message.lang_code')) }}">
-                                        {{ __('message.lang') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -78,6 +80,11 @@
                                 </div>
                             </li>
                         @endguest
+                        <li  class="nav-item dropdown p-3">
+                            <a class="dropdown-item" href="{{ route('changelang', __('message.lang_code')) }}">
+                                {{ __('message.lang') }}
+                            </a>
+                        </li>
                         {{-- <div class="dropdown dropdown-menu-end">
                             <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">

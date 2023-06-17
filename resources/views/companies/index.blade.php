@@ -4,7 +4,7 @@
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">{{ __('message.companies') }}</h1>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <form method="GET" action="{{ route('company.index') }}">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="search" id="search" aria-describedby="helpId"

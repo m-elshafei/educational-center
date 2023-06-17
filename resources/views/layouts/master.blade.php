@@ -38,10 +38,5 @@
        <li class="nav-item">
            <a class="nav-link" href="{{ url('contact') }}">{{ __('message.contact_us') }}</a>
        </li>
-@if (session('locale') == 'ar')
-    
-       <img src="{{ Avatar::create(Auth::user()->name_ar)->toBase64() }}" alt="profile image" class="avatar-img ">
-@else
-       <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="profile image" class="avatar-img ">
-@endif
+
    </ul>
