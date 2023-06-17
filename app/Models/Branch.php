@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Branch extends Model
 {
     use HasFactory;
+    protected $table = 'branches';
     protected $fillable = ['name', 'location', 'company_id'];
 
     public function company()

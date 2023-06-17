@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ClassRoom extends Model
 {
     use HasFactory;
+    protected $table = 'class_rooms';
+
     protected $fillable = ['name', 'configration', 'capacity', 'branch_id'];
     public function branch()
     {

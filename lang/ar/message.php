@@ -15,7 +15,7 @@ return [
     'course_students' => 'طلاب الكورسات',
     'employees' => 'الموظفين',
     'schedules' => 'الجداول',
-    'lang' => 'English',
+    'lang' => 'en',
     'lang_code' => 'en',
     'add_company' => 'اضافه شركه جديده',
     'name' => 'الاسم',

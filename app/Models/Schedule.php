@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Schedule extends Model
 {
     use HasFactory;
+    protected $table = 'schedules';
+
     protected $fillable = ['start_date', 'end_date', 'start_time', 'end_time', 'course_id', 'class_room_id', 'instructor_id','created_by'];
     public function course()
     {

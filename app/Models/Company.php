@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Company extends Model
 {
     use HasFactory;
+    protected $table = 'companies';
+
     protected $fillable = ['name', 'tax_number', 'owner'];
     public function branches()
     {
