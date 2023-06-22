@@ -26,13 +26,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\ClassRoom::factory(100)->create();
 
         $this->call([
-<<<<<<< HEAD
             UserSeeder::class,
             RoleSeeder::class
-=======
-            RoleSeeder::class,
-            UserSeeder::class
->>>>>>> 86187de0d1fe15bcc01f94444598b1256f4eb0af
         ]);
     }
 }

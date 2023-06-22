@@ -25,11 +25,7 @@ class UserSeeder extends Seeder
             'role' => 'admin',
             'status' => 1,
             'created_at' => now(),
-<<<<<<< HEAD
-            'updated_at' => now(),
-=======
             'updated_at' => now()
->>>>>>> 86187de0d1fe15bcc01f94444598b1256f4eb0af
         ]);
     }
 }
