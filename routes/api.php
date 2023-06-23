@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CompanyController;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +21,12 @@ use App\Http\Controllers\ApiController;
 //     return $request->user();
 // });
 
-Route::post('/login', 'ApiController@login');
+// Route::post('/login', 'ApiController@login');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/me', 'ApiController@me');
-});
+// Route::middleware('auth:sanctum')->group(function () {
+//     Route::get('/me', 'ApiController@me');
+// });
+
+Route::get('/company',[CompanyController::class,'index']);
+Route::get('/company/{id}',[CompanyController::class,'show']);
+Route::post('/company',[CompanyController::class,'store']);

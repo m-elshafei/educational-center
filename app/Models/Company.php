@@ -13,6 +13,12 @@ class Company extends Model
     protected $table = 'companies';
 
     protected $fillable = ['name', 'tax_number', 'owner'];
+    protected $casts = [
+        'name' => 'string',
+        'tax_number' => 'integer',
+        'owner' => 'string',
+
+    ];
     public function branches()
     {
         return $this->hasMany(Branch::class, 'company_id', 'id');
