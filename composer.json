@@ -18,7 +18,8 @@
         "nesbot/carbon": "^2.66",
         "spatie/laravel-json-api-paginate": "^1.13",
         "spatie/laravel-paginateroute": "^2.7",
-        "spatie/laravel-permission": "^5.10"
+        "spatie/laravel-permission": "^5.10",
+        "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

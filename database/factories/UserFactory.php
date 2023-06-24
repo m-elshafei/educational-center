@@ -19,12 +19,12 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'name_ar' => fake()->name('male'),
+            // 'name_ar' => fake()->name('male'),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'role' => fake()->randomElement(['user', 'admin', 'instructor', 'student']),
-            'status' => fake()->randomElement([0,1]),
+            // 'role' => fake()->randomElement(['user', 'admin', 'instructor', 'student']),
+            // 'status' => fake()->randomElement([0,1]),
             'remember_token' => Str::random(10),
         ];
     }

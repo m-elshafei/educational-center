@@ -35,14 +35,57 @@ class CompanyController extends Controller
             'tax_number' => 'required',
             'owner' => 'required',
         ]);
+
         if ($validator->fails()) {
             return $this->apiresponse(null, 400, $validator->errors());
         }
+
         $companies = Company::create($request->all());
+
         if ($companies) {
-            return $this->apiresponse(new CompanyResource($companies), );
+            return $this->apiresponse(new CompanyResource($companies));
         } else {
             return $this->apiresponse($companies, 400, 'not saved');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'tax_number' => 'required',
+            'owner' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->apiresponse(null, 400, $validator->errors());
+        }
+
+        $companies = Company::find($id);
+
+        if (!$companies) {
+            return $this->apiresponse($companies, 400, 'not found');
+        }
+
+        $companies->update($request->all());
+
+        if ($companies) {
+            return $this->apiresponse(new CompanyResource($companies));
+        }
+    }
+
+    public function destroy($id)
+    {
+        $companies = Company::find($id);
+
+        if (!$companies) {
+            return $this->apiresponse($companies, 400, 'not found');
+        }
+
+        $companies->delete($id);
+
+        if ($companies) {
+            return $this->apiresponse($companies);
         }
     }
 }
