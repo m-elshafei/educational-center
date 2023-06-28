@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\BranchController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -42,3 +44,15 @@ Route::get('/company/{id}', [CompanyController::class, 'show']);
 Route::post('/company', [CompanyController::class, 'store']);
 Route::post('/company/{id}', [CompanyController::class, 'update']);
 Route::post('/company/del/{id}', [CompanyController::class, 'destroy']);
+
+Route::get('/branch', [BranchController::class, 'index']);
+Route::get('/branch/{id}', [BranchController::class, 'show']);
+Route::post('/branch', [BranchController::class, 'store']);
+Route::post('/branch/{id}', [BranchController::class, 'update']);
+Route::post('/branch/del/{id}', [BranchController::class, 'destroy']);
+
+Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/{id}', [CategoryController::class, 'show']);
+Route::post('/category', [CategoryController::class, 'store']);
+Route::post('/category/{id}', [CategoryController::class, 'update']);
+Route::post('/category/del/{id}', [CategoryController::class, 'destroy']);
