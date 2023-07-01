@@ -2,8 +2,14 @@
 
 use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\CompanyController;
-use App\Models\Company;
+use App\Http\Controllers\Api\ClassRoomController;
+use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\ManagerController;
+use App\Http\Controllers\Api\VendorController;
+use App\Http\Controllers\Api\CourseStudentController;
+use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\ScheduleController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
@@ -56,3 +62,51 @@ Route::get('/category/{id}', [CategoryController::class, 'show']);
 Route::post('/category', [CategoryController::class, 'store']);
 Route::post('/category/{id}', [CategoryController::class, 'update']);
 Route::post('/category/del/{id}', [CategoryController::class, 'destroy']);
+
+Route::get('/manager', [ManagerController::class, 'index']);
+Route::get('/manager/{id}', [ManagerController::class, 'show']);
+Route::post('/manager', [ManagerController::class, 'store']);
+Route::post('/manager/{id}', [ManagerController::class, 'update']);
+Route::post('/manager/del/{id}', [ManagerController::class, 'destroy']);
+
+Route::get('/vendor', [VendorController::class, 'index']);
+Route::get('/vendor/{id}', [VendorController::class, 'show']);
+Route::post('/vendor', [VendorController::class, 'store']);
+Route::post('/vendor/{id}', [VendorController::class, 'update']);
+Route::post('/vendor/del/{id}', [VendorController::class, 'destroy']);
+
+Route::get('/class', [ClassRoomController::class, 'index']);
+Route::get('/class/{id}', [ClassRoomController::class, 'show']);
+Route::post('/class', [ClassRoomController::class, 'store']);
+Route::post('/class/{id}', [ClassRoomController::class, 'update']);
+Route::post('/class/del/{id}', [ClassRoomController::class, 'destroy']);
+
+Route::get('/course', [CourseController::class, 'index']);
+Route::get('/course/{id}', [CourseController::class, 'show']);
+Route::post('/course', [CourseController::class, 'store']);
+Route::post('/course/{id}', [CourseController::class, 'update']);
+Route::post('/course/del/{id}', [CourseController::class, 'destroy']);
+
+Route::get('/student', [CourseStudentController::class, 'index']);
+Route::get('/student/{id}', [CourseStudentController::class, 'show']);
+Route::post('/student', [CourseStudentController::class, 'store']);
+Route::post('/student/{id}', [CourseStudentController::class, 'update']);
+Route::post('/student/del/{id}', [CourseStudentController::class, 'destroy']);
+
+Route::get('/employee', [EmployeeController::class, 'index']);
+Route::get('/employee/{id}', [EmployeeController::class, 'show']);
+Route::post('/employee', [EmployeeController::class, 'store']);
+Route::post('/employee/{id}', [EmployeeController::class, 'update']);
+Route::post('/employee/del/{id}', [EmployeeController::class, 'destroy']);
+
+Route::get('/schedule', [ScheduleController::class, 'index']);
+Route::get('/schedule/{id}', [ScheduleController::class, 'show']);
+Route::post('/schedule', [ScheduleController::class, 'store']);
+Route::post('/schedule/{id}', [ScheduleController::class, 'update']);
+Route::post('/schedule/del/{id}', [ScheduleController::class, 'destroy']);
+
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::post('/user', [UserController::class, 'store']);
+Route::patch('/user/{id}', [UserController::class, 'update']);
+Route::delete('/user/{id}', [UserController::class, 'destroy']);

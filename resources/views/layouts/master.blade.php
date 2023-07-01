@@ -29,12 +29,12 @@
        <li class="nav-item">
            <a class="nav-link" href="{{ url('schedule') }}">{{ __('message.schedules') }}</a>
        </li>
-       <li class="nav-item">
+       {{-- <li class="nav-item">
            <a class="nav-link" href="{{ url('users') }}">{{ __('message.users') }}</a>
        </li>
        <li class="nav-item">
            <a class="nav-link" href="{{ url('roles') }}">{{ __('message.permissions') }}</a>
-       </li>
+       </li> --}}
        <li class="nav-item">
            <a class="nav-link" href="{{ url('contact') }}">{{ __('message.contact_us') }}</a>
        </li>

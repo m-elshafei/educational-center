@@ -13,7 +13,7 @@
                 </form>
             </div>
         </div>
-        @if (Auth::check() && Auth::user())
+        @if (Auth::user()->role == 'admin')
             <div class="d-flex justify-content-end mb-3">
                 <div><a name="" id="" class="btn btn-primary" target="_blank"
                         href="{{ route('company.create') }}" role="button">{{ __('message.add_company') }}</a>
@@ -35,7 +35,7 @@
                         <th scope="col">{{ __('message.tax_numebr') }}</th>
                         <th scope="col">{{ __('message.created_at') }}</th>
                         <th scope="col">{{ __('message.updated_at') }}</th>
-                        @if (Auth::check() && Auth::user())
+                        @if (Auth::user()->role == 'admin')
                             <th scope="col">{{ __('message.actions') }}</th>
                         @endif
                     </tr>
@@ -49,7 +49,7 @@
                             <td>{{ $company->tax_number }}</td>
                             <td>{{ $company->created_at }}</td>
                             <td>{{ $company->updated_at }}</td>
-                            @if (Auth::check() && Auth::user())
+                            @if (Auth::user()->role == 'admin')
                                 <td>
                                     <div class="d-flex justify-content-evenly">
                                         <a name="" id="" class="btn btn-warning"
