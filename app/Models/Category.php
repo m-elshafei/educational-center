@@ -23,4 +23,7 @@ class Category extends Model
     {
         return $this->hasMany(Course::class, 'category_id', 'id');
     }
+    public static $rules = [
+        'name' => 'required'
+    ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateClassroomRequest;
 use App\Models\Branch;
 use App\Models\ClassRoom;
 use App\Models\Vendor;
@@ -32,13 +33,9 @@ class ClassRoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateClassroomRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'capacity' => 'required',
-            'branch_id' => 'required'
-        ]);
+
         ClassRoom::create($request->except('_token'));
         return redirect()->route('classroom.index')->with('message', 'Class Room Added');
     }

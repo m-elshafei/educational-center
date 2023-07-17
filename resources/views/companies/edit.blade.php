@@ -3,6 +3,7 @@
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">{{ __('message.edit_company') }}</h1>
+        @include('layouts.errorMessage')
         <form method="POST" action="{{ route('company.update', $company->id) }}">
             @method('patch')
             @csrf
@@ -24,11 +25,12 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="tax_numebr" class="form-label">{{ __('message.tax_numebr') }}</label>
-                        <input value="{{ $company->tax_number }}" type="text" class="form-control" name="{{ __('message.tax_numebr') }}"
-                            id="tax_numebr" aria-describedby="helpId" placeholder="Tax Number">
+                        <input value="{{ $company->tax_number }}" type="text" class="form-control"
+                            name="{{ __('message.tax_numebr') }}" id="tax_numebr" aria-describedby="helpId"
+                            placeholder="Tax Number">
                     </div>
                 </div>
-               <x-button-save></x-button-save>
+                <x-button-save></x-button-save>
             </div>
         </form>
     </div>

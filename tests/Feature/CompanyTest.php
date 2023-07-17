@@ -12,7 +12,19 @@ class CompanyTest extends TestCase
     /**
      * A basic feature test example.
      */
-    protected $companies;
+
+    public function test_show_company()
+    {
+        $response = $this->resource('/company');
+        // $response = $this->call('resource', '/compny');
+        if ($response) {
+            $response->assertDontSee(__('message.no_data_found'));
+        } else {
+            $response->assertSee(__('message.no_data_found'));
+        }
+    }
+
+
     public function test_create_company()
     {
         $company = Company::factory()->create();

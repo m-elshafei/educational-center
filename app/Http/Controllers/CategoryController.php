@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Exception;
@@ -28,11 +29,9 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
+
         Category::create($request->except('_token'));
         return redirect()->route('category.index')->with('message', __('message.branch_added'));
     }

@@ -20,4 +20,10 @@ class ClassRoom extends Model
     {
         return $this->hasMany(Schedule::class, 'class_room_id', 'id');
     }
+    public static $rules = [
+        'name' => 'required',
+        'capacity' => 'required',
+        'branch_id' => 'required'
+
+    ];
 }

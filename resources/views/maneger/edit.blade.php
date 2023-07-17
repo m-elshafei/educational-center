@@ -3,6 +3,7 @@
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">{{ __('message.edit_company') }}</h1>
+        @include('layouts.errorMessage')
         <form method="POST" action="{{ route('manager.update', $managers->id) }}">
             @method('patch')
             @csrf

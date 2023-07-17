@@ -3,15 +3,7 @@
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">{{ __('message.edit_course') }}</h1>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('layouts.errorMessage')
         <form method="POST" action="{{ route('course.update', $courses->id) }}">
             @method('patch')
             @csrf
@@ -19,8 +11,8 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="name" class="form-label">{{ __('message.name') }}</label>
-                        <input value="{{ $courses->name }}" type="text" class="form-control" name="name"
-                            id="name" aria-describedby="helpId" placeholder="{{ __('message.name') }}">
+                        <input value="{{ $courses->name }}" type="text" class="form-control" name="name" id="name"
+                            aria-describedby="helpId" placeholder="{{ __('message.name') }}">
                     </div>
                 </div>
                 <div class="col-md-6">

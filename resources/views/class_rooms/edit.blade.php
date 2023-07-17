@@ -3,15 +3,7 @@
 @section('content')
     <div class="rounded bg-white p-3 m-3">
         <h1 class="text-center">{{ __('message.edit_class') }}</h1>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('layouts.errorMessage')
         <form method="POST" action="{{ route('classroom.update', $class_rooms->id) }}">
             @method('patch')
             @csrf
@@ -19,22 +11,24 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="name" class="form-label">{{ __('message.name') }}</label>
-                        <input required value="{{ $class_rooms->name }} " type="text" class="form-control" name="{{ __('message.name') }}"
-                            id="name" aria-describedby="helpId">
+                        <input required value="{{ $class_rooms->name }} " type="text" class="form-control"
+                            name="{{ __('message.name') }}" id="name" aria-describedby="helpId">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="configration" class="form-label">{{ __('message.information') }}</label>
                         <input value="{{ $class_rooms->configration }}" type="text" class="form-control"
-                            name="configration" id="configration" aria-describedby="helpId" placeholder="{{ __('message.information') }}">
+                            name="configration" id="configration" aria-describedby="helpId"
+                            placeholder="{{ __('message.information') }}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="capacity" class="form-label">{{ __('message.capacity') }}</label>
                         <input required value="{{ $class_rooms->capacity }}" type="text" class="form-control"
-                            name="capacity" id="capacity" aria-describedby="helpId" placeholder="{{ __('message.capacity') }}">
+                            name="capacity" id="capacity" aria-describedby="helpId"
+                            placeholder="{{ __('message.capacity') }}">
                     </div>
                 </div>
                 <div class="col-6">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateBranchRequest;
+use App\Http\Resources\BranchResource;
 use App\Models\Branch;
 use App\Models\Company;
 use Exception;
@@ -32,13 +34,8 @@ class BranchController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateBranchRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'location' => 'required',
-            'company_id' => 'required'
-        ]);
         Branch::create($request->except('_token'));
         return redirect()->route('branch.index')->with('message', __('message.category_added') );
     }

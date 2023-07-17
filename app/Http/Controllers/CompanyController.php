@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCompanyRequest;
 use carbon\carbon as Time;
 use carbon\carbon;
 use App\Models\Company;
@@ -41,7 +42,7 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateCompanyRequest $request)
     {
         Company::create($request->except('_token'));
         return redirect()->route('company.index')->with('message', 'Company Added ');

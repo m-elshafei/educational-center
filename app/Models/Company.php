@@ -28,4 +28,9 @@ class Company extends Model
     {
         return $this->hasOne(Maneger::class);
     }
+    public static $rules = [
+        'name' => 'required',
+        'tax_number' => 'required',
+        'owner' => 'required'
+    ];
 }

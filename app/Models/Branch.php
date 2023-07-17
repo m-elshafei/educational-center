@@ -11,7 +11,12 @@ class Branch extends Model
 {
     use HasFactory;
     protected $table = 'branches';
-    protected $fillable = ['name', 'location', 'company_id'];
+
+    protected $fillable = [
+        'name',
+        'location',
+        'company_id'
+    ];
 
     public function company()
     {
@@ -21,4 +26,10 @@ class Branch extends Model
     {
         return $this->hasMany(ClassRoom::class);
     }
+
+    public static $rules = [
+        'name' => 'required',
+        'location' => 'required',
+        'company_id' => 'required'
+    ];
 }
