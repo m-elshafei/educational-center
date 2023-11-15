@@ -18,10 +18,7 @@ class Branch extends Model
         'company_id'
     ];
 
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
+
     public function class_rooms()
     {
         return $this->hasMany(ClassRoom::class);
