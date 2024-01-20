@@ -19,6 +19,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClassRoomController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\CourseStudentController;
 
 /*
@@ -61,3 +62,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 });
+
+
+Route::get('/auth/facebook', [SocialiteController::class, 'RedirectToFacebook'])->name('facebook');
+Route::get('/auth/facebook/callback',  [SocialiteController::class, 'handleFacebookCallback']);
+
+
+Route::get('/auth/google', [SocialiteController::class, 'RedirectToGoogle'])->name('google');
+Route::get('/auth/google/callback',  [SocialiteController::class, 'handleGoogleCallback']);
