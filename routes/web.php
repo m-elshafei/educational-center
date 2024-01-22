@@ -70,3 +70,7 @@ Route::get('/auth/facebook/callback',  [SocialiteController::class, 'handleFaceb
 
 Route::get('/auth/google', [SocialiteController::class, 'RedirectToGoogle'])->name('google');
 Route::get('/auth/google/callback',  [SocialiteController::class, 'handleGoogleCallback']);
+
+
+Route::post('/telegram/webhook', [TelegramController::class, 'handleWebhook']);
+Route::get('/telegram/send-message', [TelegramController::class, 'sendMessage']);
