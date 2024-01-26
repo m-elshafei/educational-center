@@ -24,20 +24,20 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            if ($e instanceof \Exception) {
-                $message = $e->getMessage();
-                $this->sendTelegramMessage($message);
-            }
+        // $this->reportable(function (Throwable $e) {
+        //     if ($e instanceof \Exception) {
+        //         $message = $e->getMessage();
+        //         $this->sendTelegramMessage($message);
+        //     }
 
-        });
+        // });
     }
 
-    private function sendTelegramMessage($message)
-    {
-        Telegram::bot('mybot')->sendMessage([
-            'chat_id' => env('TELEGRAM_CHAT_ID'),
-            'text' => $message,
-        ]);
-    }
+    // private function sendTelegramMessage($message)
+    // {
+    //     Telegram::bot('mybot')->sendMessage([
+    //         'chat_id' => env('TELEGRAM_CHAT_ID'),
+    //         'text' => $message,
+    //     ]);
+    // }
 }
