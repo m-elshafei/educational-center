@@ -17,6 +17,7 @@
         "laravel/ui": "^4.2",
         "laravelcollective/html": "^6.4",
         "laravolt/avatar": "^5.0",
+        "mcamara/laravel-localization": "^1.8",
         "nesbot/carbon": "^2.66",
         "opcodesio/log-viewer": "^3.1",
         "spatie/laravel-json-api-paginate": "^1.13",

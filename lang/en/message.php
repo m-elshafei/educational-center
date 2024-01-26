@@ -15,7 +15,7 @@ return [
     'course_students' => 'Course Students',
     'employees' => 'Employees',
     'schedules' => 'Schedules',
-    'lang' => 'ع',
+    'lang' => 'ar',
     'lang_code' => 'ar',
     'add_company' => 'Add New Campany',
     'name' => 'Name',

@@ -85,6 +85,15 @@
                                 {{ __('message.lang') }}
                             </a>
                         </li>
+                        {{-- <ul class="navbar-nav mr-auto">
+                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <li class="nav-item active">
+                                    <a class="nav-link"
+                                       href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"> {{ $properties['native'] }}
+                                        <span class="sr-only">(current)</span></a>
+                                </li>
+                            @endforeach
+                        </ul> --}}
                         {{-- <div class="dropdown dropdown-menu-end">
                             <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">

@@ -37,32 +37,52 @@ use App\Http\Controllers\CourseStudentController;
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
-    Route::resource('/', CompanyController::class);
-    Route::resource('/company', CompanyController::class);
-    Route::resource('/branch', BranchController::class);
-    Route::resource('/manager', ManegerController::class);
-    Route::resource('/category', CategoryController::class);
-    Route::resource('/classroom', ClassRoomController::class);
-    Route::resource('/course', CourseController::class);
-    Route::resource('/course_student', CourseStudentController::class);
-    Route::resource('/vendor', VendorController::class);
-    Route::resource('/contact',ContactController::class);
-    Route::resource('/employee',EmployeeController::class);
-    Route::resource('/schedule',ScheduleController::class);
-    route::get('changelang/{locale}', function ($locale) {
-        if (!in_array($locale, ['ar', 'en'])) {
-            abort(400);
-        };
-        session()->put('locale', $locale);
-        App::setLocale($locale);
-        return redirect()->back();
-    })->name('changelang');
+    Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
+    {
+        Route::resource('/', CompanyController::class);
+        Route::resource('/company', CompanyController::class);
+        Route::resource('/branch', BranchController::class);
+        Route::resource('/manager', ManegerController::class);
+        Route::resource('/category', CategoryController::class);
+        Route::resource('/classroom', ClassRoomController::class);
+        Route::resource('/course', CourseController::class);
+        Route::resource('/course_student', CourseStudentController::class);
+        Route::resource('/vendor', VendorController::class);
+        Route::resource('/contact',ContactController::class);
+        Route::resource('/employee',EmployeeController::class);
+        Route::resource('/schedule',ScheduleController::class);
+        route::get('changelang/{locale}', function ($locale) {
+            if (!in_array($locale, ['ar', 'en'])) {
+                abort(400);
+            };
+            session()->put('locale', $locale);
+            App::setLocale($locale);
+            return redirect()->back();
+        })->name('changelang');
+    });
+
 });
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 });
 
+// routes/web.php
+
+// Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+// {
+// 	/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+// 	Route::get('/', function()
+// 	{
+// 		return View::make('hello');
+// 	});
+
+// 	Route::get('test',function(){
+// 		return View::make('test');
+// 	});
+// });
+
+/** OTHER PAGES THAT SHOULD NOT BE LOCALIZED **/
 
 Route::get('/auth/facebook', [SocialiteController::class, 'RedirectToFacebook'])->name('facebook');
 Route::get('/auth/facebook/callback',  [SocialiteController::class, 'handleFacebookCallback']);
