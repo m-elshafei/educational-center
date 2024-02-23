@@ -1,4 +1,4 @@
-> Establishing an integrated educational center system
+>> Establishing an integrated educational center system
 
 ### Center Quick Start
 
